@@ -1,0 +1,15 @@
+name: ShopAds
+main: nz.rishaan.shopads.ShopAds
+version: 0.86
+author: Hpiz
+authors: [blobic123, MelonKing]
+depend:
+  - Vault
+commands:
+  ads:
+    description: Control creation and receiving of ad
+    usage: /<command>
+    aliases: ad
+  shops:
+    description: Actions for current shops
+    usage: /<command>
