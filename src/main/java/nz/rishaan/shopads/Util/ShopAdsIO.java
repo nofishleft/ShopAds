@@ -18,8 +18,7 @@ import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class ShopAdsIO
-{
+public class ShopAdsIO {
     private final File configFile = new File("plugins/ShopAds/config.yml");
     private final File shopsFile = new File("plugins/ShopAds/shops.dat");
     private final File playerFile = new File("plugins/ShopAds/player.dat");
@@ -85,43 +84,32 @@ public class ShopAdsIO
         config.setSetAdCost(fc.getDouble("setAdCost", 0));
     }
 
-    public boolean loadPlayers()
-    {
+    public boolean loadPlayers() {
         ShopAdsMessage.console.debug("loadingPlayers");
         if (!this.playerFile.exists()) {
-            try
-            {
+            try {
                 this.playerFile.createNewFile();
                 return true;
-            }
-            catch (IOException ex)
-            {
+            } catch (IOException ex) {
                 Logger.getLogger(ShopAdsIO.class.getName()).log(Level.SEVERE, null, ex);
                 return false;
             }
         }
         ObjectInputStream in = null;
-        try
-        {
+        try {
             FileInputStream fis = new FileInputStream(this.playerFile);
             in = new ObjectInputStream(fis);
+        } catch (IOException ignored) {
         }
-        catch (IOException ignored) {}
         int playerObjects = getObjectCount(this.playerFile);
         ShopAdsPlayer player = null;
         boolean end = false;
-        do
-        {
-            try
-            {
-                player = (ShopAdsPlayer)in.readObject();
-            }
-            catch (IOException | NullPointerException ex)
-            {
+        do {
+            try {
+                player = (ShopAdsPlayer) in.readObject();
+            } catch (IOException | NullPointerException ex) {
                 end = true;
-            }
-            catch (ClassNotFoundException ex)
-            {
+            } catch (ClassNotFoundException ex) {
                 ShopAds.log.info("Something terribly important is missing (ShopAdsPlayer)");
                 return false;
             }
@@ -132,53 +120,39 @@ public class ShopAdsIO
         return true;
     }
 
-    public boolean loadShops()
-    {
+    public boolean loadShops() {
         ShopAdsMessage.console.debug("loadingShops");
         if (!this.shopsFile.exists()) {
-            try
-            {
+            try {
                 this.shopsFile.createNewFile();
                 return true;
-            }
-            catch (IOException ex)
-            {
+            } catch (IOException ex) {
                 Logger.getLogger(ShopAdsIO.class.getName()).log(Level.SEVERE, null, ex);
                 return false;
             }
         }
         ObjectInputStream in = null;
-        try
-        {
+        try {
             FileInputStream fis = new FileInputStream(this.shopsFile);
             in = new ObjectInputStream(fis);
+        } catch (IOException ignored) {
         }
-        catch (IOException ignored) {}
         int shopsObjects = getObjectCount(this.shopsFile);
         Shop shop = null;
         boolean end = false;
-        do
-        {
-            try
-            {
-                shop = (Shop)in.readObject();
-            }
-            catch (IOException | NullPointerException ex)
-            {
+        do {
+            try {
+                shop = (Shop) in.readObject();
+            } catch (IOException | NullPointerException ex) {
                 end = true;
-            }
-            catch (ClassNotFoundException ex)
-            {
+            } catch (ClassNotFoundException ex) {
                 ShopAds.log.info("Something terribly important is missing (Shop)");
                 return false;
             }
             if (!end) {
-                try
-                {
+                try {
                     ShopAds.shopHandler.addShop(shop);
-                }
-                catch (NullPointerException e)
-                {
+                } catch (NullPointerException e) {
                     ShopAdsMessage.console.playersFileReset();
                     ShopAds.plugin.onDisable();
                 }
@@ -187,8 +161,7 @@ public class ShopAdsIO
         return true;
     }
 
-    public boolean saveShops()
-    {
+    public boolean saveShops() {
         if (ShopAds.shopHandler.shopsEmpty()) {
             return true;
         }
@@ -196,64 +169,51 @@ public class ShopAdsIO
 
         FileOutputStream fos;
         ObjectOutputStream out = null;
-        try
-        {
+        try {
             fos = new FileOutputStream(this.shopsFile);
             out = new ObjectOutputStream(fos);
-        } catch (IOException ex)
-        {
+        } catch (IOException ex) {
             Logger.getLogger(ShopAdsIO.class.getName()).log(Level.SEVERE, null, ex);
         }
         ShopAdsMessage.console.debug(ShopAds.shopHandler.getShop(0).getShopName());
         for (Shop p : ShopAds.shopHandler.getShops()) {
-            try
-            {
+            try {
                 ShopAdsMessage.console.debug("Saving Shop : " + p.getShopName());
                 out.writeObject(p);
-            }
-            catch (IOException ex)
-            {
+            } catch (IOException ex) {
                 Logger.getLogger(ShopAdsIO.class.getName()).log(Level.SEVERE, null, ex);
                 ShopAdsMessage.console.debug("There was an error on " + p.getShopName());
             }
         }
-        try
-        {
+        try {
             out.close();
-        }
-        catch (IOException ex)
-        {
+        } catch (IOException ex) {
             Logger.getLogger(ShopAdsIO.class.getName()).log(Level.SEVERE, null, ex);
             ShopAdsMessage.console.debug("There was an error closing the shop writer");
         }
         return false;
     }
 
-    public int getObjectCount(File file)
-    {
+    public int getObjectCount(File file) {
         ShopAdsMessage.console.debug("getObjectCount on " + file.getName());
         int count = 0;
 
         ObjectInputStream in;
-        try
-        {
+        try {
             FileInputStream fis = new FileInputStream(file);
             in = new ObjectInputStream(fis);
-        } catch (IOException ex)
-        {
+        } catch (IOException ex) {
             ShopAdsMessage.console.debug("Object Count : 0");
             return 0;
         }
         Object object = null;
-        try
-        {
-            for (;;)
-            {
+        try {
+            for (; ; ) {
                 object = in.readObject();
                 count++;
             }
+        } catch (NullPointerException | IOException | ClassNotFoundException ignored) {
         }
-        catch (NullPointerException | IOException | ClassNotFoundException ignored) {}
         return count;
     }
 
@@ -262,13 +222,10 @@ public class ShopAdsIO
     }
 
     @Deprecated
-    public void createDefaultConfig_legacy()
-    {
-        try
-        {
+    public void createDefaultConfig_legacy() {
+        try {
             this.configFile.createNewFile();
-            try
-            {
+            try {
                 PrintWriter out = new PrintWriter(new FileWriter(this.configFile));
                 out.println("#'shopsPerPlayer' - The maximum number of ads allowed to each player");
                 out.println("#'announceInterval' - The time in seconds between ad announcements [number(secs)]");
@@ -344,20 +301,15 @@ public class ShopAdsIO
                 out.println("defaultAdColor=Gray");
                 out.close();
                 ShopAds.log.info("[ShopAds2] No config found, created default config");
-            }
-            catch (IOException e)
-            {
+            } catch (IOException e) {
                 ShopAds.log.info("[ShopAds2] Error writing to config");
             }
-        }
-        catch (IOException ioe)
-        {
+        } catch (IOException ioe) {
             ShopAds.log.info("[ShopAds] Error creating config file");
         }
     }
 
-    public boolean savePlayers()
-    {
+    public boolean savePlayers() {
         if (ShopAds.playerHandler.isEmpty()) {
             return true;
         }
@@ -365,33 +317,25 @@ public class ShopAdsIO
 
         FileOutputStream fos;
         ObjectOutputStream out = null;
-        try
-        {
+        try {
             fos = new FileOutputStream(this.playerFile);
             out = new ObjectOutputStream(fos);
-        } catch (IOException ex)
-        {
+        } catch (IOException ex) {
             Logger.getLogger(ShopAdsIO.class.getName()).log(Level.SEVERE, null, ex);
         }
         ShopAdsMessage.console.debug(ShopAds.playerHandler.getPlayer(0).getName());
         for (ShopAdsPlayer p : ShopAds.playerHandler.getPlayers()) {
-            try
-            {
+            try {
                 ShopAdsMessage.console.debug("Saving Player : " + p.getName());
                 out.writeObject(p);
-            }
-            catch (IOException ex)
-            {
+            } catch (IOException ex) {
                 Logger.getLogger(ShopAdsIO.class.getName()).log(Level.SEVERE, null, ex);
                 ShopAdsMessage.console.debug("There was an error on " + p.getName());
             }
         }
-        try
-        {
+        try {
             out.close();
-        }
-        catch (IOException ex)
-        {
+        } catch (IOException ex) {
             Logger.getLogger(ShopAdsIO.class.getName()).log(Level.SEVERE, null, ex);
             ShopAdsMessage.console.debug("There was an error closing the player writer");
         }

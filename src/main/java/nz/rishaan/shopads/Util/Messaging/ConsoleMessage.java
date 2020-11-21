@@ -1,83 +1,67 @@
 package nz.rishaan.shopads.Util.Messaging;
 
 
-import java.util.logging.Logger;
-import nz.rishaan.shopads.Shop.ShopHandler;
-import nz.rishaan.shopads.Util.ShopAdsConfig;
+import nz.rishaan.shopads.ShopAds;
 
 public class ConsoleMessage
-        extends ShopAdsMessage
-{
-    public void numberOfShopsLoaded()
-    {
-        if (plugin.shopHandler.shopsEmpty())
-        {
-            plugin.log.info("[ShopAds2] No shops were found.");
+        extends ShopAdsMessage {
+    public void numberOfShopsLoaded() {
+        if (ShopAds.shopHandler.shopsEmpty()) {
+            ShopAds.log.info("[ShopAds2] No shops were found.");
             return;
         }
-        if (plugin.shopHandler.getSize() == 1) {
-            plugin.log.info("[ShopAds2] 1 shop was loaded.");
+        if (ShopAds.shopHandler.getSize() == 1) {
+            ShopAds.log.info("[ShopAds2] 1 shop was loaded.");
         } else {
-            plugin.log.info("[ShopAds2] " + plugin.shopHandler.getSize() + " shops were loaded.");
+            ShopAds.log.info("[ShopAds2] " + ShopAds.shopHandler.getSize() + " shops were loaded.");
         }
     }
 
-    public void checkConfigOption(String parameter)
-    {
-        plugin.log.info("[ShopAds2] Check the config option '" + parameter + "'.");
+    public void checkConfigOption(String parameter) {
+        ShopAds.log.info("[ShopAds2] Check the config option '" + parameter + "'.");
     }
 
-    public void debug(String message)
-    {
-        if (plugin.config.getDebug()) {
-            plugin.log.info("[ShopAds2 DEBUG-MODE] " + message);
+    public void debug(String message) {
+        if (ShopAds.config.getDebug()) {
+            ShopAds.log.info("[ShopAds2 DEBUG-MODE] " + message);
         }
     }
 
-    public void hookedEconomy(String name)
-    {
-        plugin.log.info("[ShopAds2] Hooked into " + name);
+    public void hookedEconomy(String name) {
+        ShopAds.log.info("[ShopAds2] Hooked into " + name);
     }
 
-    public void hookedPermissions(String name)
-    {
-        plugin.log.info("[ShopAds2] Hooked into " + name);
+    public void hookedPermissions(String name) {
+        ShopAds.log.info("[ShopAds2] Hooked into " + name);
     }
 
-    public void disablePlugin()
-    {
-        plugin.log.info("[ShopAds2] Plugin disabled.");
+    public void disablePlugin() {
+        ShopAds.log.info("[ShopAds2] Plugin disabled.");
     }
 
-    public void playersFileReset()
-    {
-        plugin.log.info("[ShopAds2] PLAYERS FILE DOESN'T MATCH UP WITH SHOPS, SUGGEST DELETING SHOPS.DAT FILE.");
+    public void playersFileReset() {
+        ShopAds.log.info("[ShopAds2] PLAYERS FILE DOESN'T MATCH UP WITH SHOPS, SUGGEST DELETING SHOPS.DAT FILE.");
     }
 
-    public void savingShops()
-    {
-        plugin.log.info("[ShopAds2] Saving shops.");
+    public void savingShops() {
+        ShopAds.log.info("[ShopAds2] Saving shops.");
     }
 
-    public void savingPlayers()
-    {
-        plugin.log.info("[ShopAds2] Saving players.");
+    public void savingPlayers() {
+        ShopAds.log.info("[ShopAds2] Saving players.");
     }
 
-    public void announceDebug(String string)
-    {
-        if (plugin.config.getAnnounceDebug()) {
-            plugin.log.info("[ShopAds2 ANNOUNCE DEBUG] " + string);
+    public void announceDebug(String string) {
+        if (ShopAds.config.getAnnounceDebug()) {
+            ShopAds.log.info("[ShopAds2 ANNOUNCE DEBUG] " + string);
         }
     }
 
-    public void dynampFound()
-    {
-        plugin.log.info("[ShopAds2] Dynmap was found and will be used.");
+    public void dynampFound() {
+        ShopAds.log.info("[ShopAds2] Dynmap was found and will be used.");
     }
 
-    public void customMessage(String custom)
-    {
-        plugin.log.info("[ShopAds2] " + custom);
+    public void customMessage(String custom) {
+        ShopAds.log.info("[ShopAds2] " + custom);
     }
 }

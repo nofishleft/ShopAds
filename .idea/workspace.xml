@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="SCOPE_TYPE" value="3" />
+  </component>
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
       <artifact name="Pack" />
@@ -9,7 +12,34 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1f371222-80dd-47ce-a571-bc69b63008e4" name="Default Changelist" comment="" />
+    <list default="true" id="1f371222-80dd-47ce-a571-bc69b63008e4" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nz/rishaan/shopads/Command/CreateCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nz/rishaan/shopads/Command/CreateCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nz/rishaan/shopads/Command/SetCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nz/rishaan/shopads/Command/SetCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nz/rishaan/shopads/Command/ShopAdsCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nz/rishaan/shopads/Command/ShopAdsCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nz/rishaan/shopads/Player/PlayerHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nz/rishaan/shopads/Player/PlayerHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nz/rishaan/shopads/Player/ShopAdsPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nz/rishaan/shopads/Player/ShopAdsPlayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nz/rishaan/shopads/Player/ShopAdsPlayerListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nz/rishaan/shopads/Player/ShopAdsPlayerListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nz/rishaan/shopads/Player/TeleportedPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nz/rishaan/shopads/Player/TeleportedPlayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nz/rishaan/shopads/Shop/AdLocation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nz/rishaan/shopads/Shop/AdLocation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nz/rishaan/shopads/Shop/Shop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nz/rishaan/shopads/Shop/Shop.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nz/rishaan/shopads/Shop/ShopHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nz/rishaan/shopads/Shop/ShopHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nz/rishaan/shopads/ShopAds.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nz/rishaan/shopads/ShopAds.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nz/rishaan/shopads/Threads/AnnounceThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nz/rishaan/shopads/Threads/AnnounceThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nz/rishaan/shopads/Threads/OneSecondThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nz/rishaan/shopads/Threads/OneSecondThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nz/rishaan/shopads/Util/ArrayFunctions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nz/rishaan/shopads/Util/ArrayFunctions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nz/rishaan/shopads/Util/Mathematical.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nz/rishaan/shopads/Util/Mathematical.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nz/rishaan/shopads/Util/Messaging/AdvertisementMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nz/rishaan/shopads/Util/Messaging/AdvertisementMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nz/rishaan/shopads/Util/Messaging/Command/CommandMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nz/rishaan/shopads/Util/Messaging/Command/CommandMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nz/rishaan/shopads/Util/Messaging/Command/CommandUsageMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nz/rishaan/shopads/Util/Messaging/Command/CommandUsageMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nz/rishaan/shopads/Util/Messaging/Command/SetCommandMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nz/rishaan/shopads/Util/Messaging/Command/SetCommandMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nz/rishaan/shopads/Util/Messaging/ConsoleMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nz/rishaan/shopads/Util/Messaging/ConsoleMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nz/rishaan/shopads/Util/Messaging/ErrorMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nz/rishaan/shopads/Util/Messaging/ErrorMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nz/rishaan/shopads/Util/Messaging/ShopAdsMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nz/rishaan/shopads/Util/Messaging/ShopAdsMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nz/rishaan/shopads/Util/ShopAdsEconomy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nz/rishaan/shopads/Util/ShopAdsEconomy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nz/rishaan/shopads/Util/ShopAdsPermissions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nz/rishaan/shopads/Util/ShopAdsPermissions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/plugin.yml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -66,6 +96,9 @@
       </state>
     </system>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -86,18 +119,97 @@
     <property name="project.structure.last.edited" value="Facets" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
   </component>
-  <component name="RunManager" selected="Gradle.ShopAds-Java [lintGradle]">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+  <component name="RunManager" selected="Gradle.ShopAds-Java [fixLintGradle]">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
+    </configuration>
+    <configuration name="ShopAds-Java [autoLintGradle]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="autoLintGradle" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="ShopAds-Java [fixGradleLint]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="fixGradleLint" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="ShopAds-Java [fixLintGradle]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="fixLintGradle" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="ShopAds-Java [generateGradleLintReport]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="generateGradleLintReport" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <method v="2" />
     </configuration>
     <configuration name="ShopAds-Java [lintGradle]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
@@ -131,11 +243,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="JAR Application.Debug Spigot" />
       <item itemvalue="Gradle.ShopAds-Java [lintGradle]" />
+      <item itemvalue="JAR Application.Debug Spigot" />
+      <item itemvalue="Gradle.ShopAds-Java [fixLintGradle]" />
+      <item itemvalue="Gradle.ShopAds-Java [fixGradleLint]" />
+      <item itemvalue="Gradle.ShopAds-Java [generateGradleLintReport]" />
+      <item itemvalue="Gradle.ShopAds-Java [autoLintGradle]" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.ShopAds-Java [fixLintGradle]" />
+        <item itemvalue="Gradle.ShopAds-Java [autoLintGradle]" />
+        <item itemvalue="Gradle.ShopAds-Java [generateGradleLintReport]" />
+        <item itemvalue="Gradle.ShopAds-Java [fixGradleLint]" />
         <item itemvalue="Gradle.ShopAds-Java [lintGradle]" />
       </list>
     </recent_temporary>
@@ -148,7 +268,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1605922259343</updated>
-      <workItem from="1605922260720" duration="3959000" />
+      <workItem from="1605922260720" duration="9557000" />
+      <workItem from="1605972707525" duration="6922000" />
     </task>
     <servers />
   </component>
@@ -160,6 +281,10 @@
       <screen x="0" y="0" width="3440" height="1440" />
     </state>
     <state x="1505" y="470" key="#BuildArtifactsBeforeRunChooser/0.0.3440.1440/-1050.0.1050.1680@0.0.3440.1440" timestamp="1605922904968" />
+    <state x="1319" y="398" key="#Code_Cleanup_Inspections" timestamp="1605926665390">
+      <screen x="0" y="0" width="3440" height="1440" />
+    </state>
+    <state x="1319" y="398" key="#Code_Cleanup_Inspections/0.0.3440.1440/-1050.0.1050.1680@0.0.3440.1440" timestamp="1605926665390" />
     <state x="1179" y="308" width="1092" height="715" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1605924238250">
       <screen x="0" y="0" width="3440" height="1440" />
     </state>
@@ -168,26 +293,30 @@
       <screen x="0" y="0" width="3440" height="1440" />
     </state>
     <state x="2310" y="513" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.3440.1440/-1050.0.1050.1680@0.0.3440.1440" timestamp="1605922573392" />
-    <state x="1505" y="420" key="FileChooserDialogImpl" timestamp="1605924141600">
+    <state x="1447" y="579" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1605974076484">
       <screen x="0" y="0" width="3440" height="1440" />
     </state>
-    <state x="1505" y="420" key="FileChooserDialogImpl/0.0.3440.1440/-1050.0.1050.1680@0.0.3440.1440" timestamp="1605924141600" />
-    <state width="3397" height="412" key="GridCell.Tab.0.bottom" timestamp="1605926199588">
+    <state x="1447" y="579" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.3440.1440/-1050.0.1050.1680@0.0.3440.1440" timestamp="1605974076484" />
+    <state x="1505" y="420" key="FileChooserDialogImpl" timestamp="1605975434068">
       <screen x="0" y="0" width="3440" height="1440" />
     </state>
-    <state width="3397" height="412" key="GridCell.Tab.0.bottom/0.0.3440.1440/-1050.0.1050.1680@0.0.3440.1440" timestamp="1605926199588" />
-    <state width="3397" height="412" key="GridCell.Tab.0.center" timestamp="1605926199588">
+    <state x="1505" y="420" key="FileChooserDialogImpl/0.0.3440.1440/-1050.0.1050.1680@0.0.3440.1440" timestamp="1605975434068" />
+    <state width="3397" height="412" key="GridCell.Tab.0.bottom" timestamp="1605974421006">
       <screen x="0" y="0" width="3440" height="1440" />
     </state>
-    <state width="3397" height="412" key="GridCell.Tab.0.center/0.0.3440.1440/-1050.0.1050.1680@0.0.3440.1440" timestamp="1605926199588" />
-    <state width="3397" height="412" key="GridCell.Tab.0.left" timestamp="1605926199588">
+    <state width="3397" height="412" key="GridCell.Tab.0.bottom/0.0.3440.1440/-1050.0.1050.1680@0.0.3440.1440" timestamp="1605974421006" />
+    <state width="3397" height="412" key="GridCell.Tab.0.center" timestamp="1605974421006">
       <screen x="0" y="0" width="3440" height="1440" />
     </state>
-    <state width="3397" height="412" key="GridCell.Tab.0.left/0.0.3440.1440/-1050.0.1050.1680@0.0.3440.1440" timestamp="1605926199588" />
-    <state width="3397" height="412" key="GridCell.Tab.0.right" timestamp="1605926199588">
+    <state width="3397" height="412" key="GridCell.Tab.0.center/0.0.3440.1440/-1050.0.1050.1680@0.0.3440.1440" timestamp="1605974421006" />
+    <state width="3397" height="412" key="GridCell.Tab.0.left" timestamp="1605974421006">
       <screen x="0" y="0" width="3440" height="1440" />
     </state>
-    <state width="3397" height="412" key="GridCell.Tab.0.right/0.0.3440.1440/-1050.0.1050.1680@0.0.3440.1440" timestamp="1605926199588" />
+    <state width="3397" height="412" key="GridCell.Tab.0.left/0.0.3440.1440/-1050.0.1050.1680@0.0.3440.1440" timestamp="1605974421006" />
+    <state width="3397" height="412" key="GridCell.Tab.0.right" timestamp="1605974421006">
+      <screen x="0" y="0" width="3440" height="1440" />
+    </state>
+    <state width="3397" height="412" key="GridCell.Tab.0.right/0.0.3440.1440/-1050.0.1050.1680@0.0.3440.1440" timestamp="1605974421006" />
     <state width="3397" height="507" key="GridCell.Tab.1.bottom" timestamp="1605925810190">
       <screen x="0" y="0" width="3440" height="1440" />
     </state>

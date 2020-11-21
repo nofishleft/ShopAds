@@ -1,14 +1,6 @@
 package nz.rishaan.shopads.Util.Messaging;
 
 
-import java.text.DecimalFormat;
-import java.util.Calendar;
-import java.util.Date;
-import org.bukkit.ChatColor;
-import org.bukkit.Server;
-import org.bukkit.entity.Player;
-import org.bukkit.plugin.Plugin;
-import org.bukkit.plugin.PluginDescriptionFile;
 import nz.rishaan.shopads.Player.TeleportedPlayer;
 import nz.rishaan.shopads.Shop.Shop;
 import nz.rishaan.shopads.ShopAds;
@@ -16,13 +8,18 @@ import nz.rishaan.shopads.Util.Mathematical;
 import nz.rishaan.shopads.Util.Messaging.Command.CommandMessage;
 import nz.rishaan.shopads.Util.Messaging.Command.CommandUsageMessage;
 import nz.rishaan.shopads.Util.Messaging.Command.SetCommandMessage;
-import nz.rishaan.shopads.Util.ShopAdsConfig;
-import nz.rishaan.shopads.Util.ShopAdsEconomy;
+import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
 
-public class ShopAdsMessage
-{
+import java.text.DecimalFormat;
+import java.util.Calendar;
+import java.util.Date;
+
+public class ShopAdsMessage {
     public static ShopAds plugin;
-    public ShopAdsMessage() {}
+
+    public ShopAdsMessage() {
+    }
 
     public static final ConsoleMessage console = new ConsoleMessage();
     public static final CommandUsageMessage commandUsage = new CommandUsageMessage();
@@ -31,36 +28,30 @@ public class ShopAdsMessage
     public static final AdvertisementMessage advertise = new AdvertisementMessage();
     public static final ErrorMessage error = new ErrorMessage();
     public static final Mathematical math = new Mathematical();
-    private DecimalFormat df = new DecimalFormat("#0.00");
+    private final DecimalFormat df = new DecimalFormat("#0.00");
 
-    public void tpTimeout(Player player)
-    {
-        player.sendMessage(plugin.prefix + "You have been returned to your previous location.");
+    public void tpTimeout(Player player) {
+        player.sendMessage(ShopAds.prefix + "You have been returned to your previous location.");
     }
 
-    public void chargePlayer(Player player, double amount)
-    {
-        player.sendMessage(plugin.prefix + "You were charged " + plugin.economy.format(amount));
+    public void chargePlayer(Player player, double amount) {
+        player.sendMessage(ShopAds.prefix + "You were charged " + ShopAds.economy.format(amount));
     }
 
-    public void newerVersionAvailable(Player player)
-    {
-        player.sendMessage(plugin.prefix + "There is a newer version of this plugin available.");
-        player.sendMessage(plugin.prefix + "Current: " + plugin.getDescription().getVersion() + " Update: " + plugin.updateVersion + " http://dev.bukkit.org/server-mods/shopads/");
+    public void newerVersionAvailable(Player player) {
+        player.sendMessage(ShopAds.prefix + "There is a newer version of this plugin available.");
+        player.sendMessage(ShopAds.prefix + "Current: " + plugin.getDescription().getVersion() + " Update: " + plugin.updateVersion + " http://dev.bukkit.org/server-mods/shopads/");
     }
 
-    public void payPlayer(Player player, double amount)
-    {
-        player.sendMessage(plugin.prefix + "You just recieved " + this.df.format(amount) + " ");
+    public void payPlayer(Player player, double amount) {
+        player.sendMessage(ShopAds.prefix + "You just recieved " + this.df.format(amount) + " ");
     }
 
-    public void playerTeleportedToYourShop(Player player, Player teleporter, Shop shop)
-    {
-        player.sendMessage(plugin.prefix + teleporter.getName() + " just teleported to your shop, " + shop.getShopName() + ".");
+    public void playerTeleportedToYourShop(Player player, Player teleporter, Shop shop) {
+        player.sendMessage(ShopAds.prefix + teleporter.getName() + " just teleported to your shop, " + shop.getShopName() + ".");
     }
 
-    public ChatColor getColor(String color)
-    {
+    public ChatColor getColor(String color) {
         if (color.equalsIgnoreCase("aqua")) {
             return ChatColor.AQUA;
         }
@@ -112,39 +103,33 @@ public class ShopAdsMessage
         return ChatColor.WHITE;
     }
 
-    public void playerTeleportExtended(TeleportedPlayer player)
-    {
+    public void playerTeleportExtended(TeleportedPlayer player) {
         Calendar calNow = Calendar.getInstance();
         Date dateNow = calNow.getTime();
-        int timeLeft = (int)(player.getTpExpire().getTime() - dateNow.getTime()) / 1000;
-        player.getPlayer().sendMessage(plugin.prefix + "Your visit has been extended " + plugin.config.getTpTimeout() + " seconds.");
-        player.getPlayer().sendMessage(plugin.prefix + "You now have " + timeLeft + " seconds left.");
+        int timeLeft = (int) (player.getTpExpire().getTime() - dateNow.getTime()) / 1000;
+        player.getPlayer().sendMessage(ShopAds.prefix + "Your visit has been extended " + ShopAds.config.getTpTimeout() + " seconds.");
+        player.getPlayer().sendMessage(ShopAds.prefix + "You now have " + timeLeft + " seconds left.");
     }
 
-    public void playerTeleported(Player player)
-    {
-        player.sendMessage(plugin.prefix + "You will be returned in " + plugin.config.getTpTimeout() + " seconds.");
+    public void playerTeleported(Player player) {
+        player.sendMessage(ShopAds.prefix + "You will be returned in " + ShopAds.config.getTpTimeout() + " seconds.");
     }
 
-    public void tpTimeoutInFiveSecond(Player player)
-    {
-        player.sendMessage(plugin.prefix + "5 seconds.");
+    public void tpTimeoutInFiveSecond(Player player) {
+        player.sendMessage(ShopAds.prefix + "5 seconds.");
     }
 
-    public void tpTimeoutInThirtySecond(Player player)
-    {
-        player.sendMessage(plugin.prefix + "30 seconds until you are returned.");
+    public void tpTimeoutInThirtySecond(Player player) {
+        player.sendMessage(ShopAds.prefix + "30 seconds until you are returned.");
     }
 
-    public void shopExpired(Shop shop)
-    {
+    public void shopExpired(Shop shop) {
         Player[] arrayOfPlayer;
-        int j = (arrayOfPlayer = (Player[]) plugin.server.getOnlinePlayers().toArray()).length;
-        for (int i = 0; i < j; i++)
-        {
+        int j = (arrayOfPlayer = (Player[]) ShopAds.server.getOnlinePlayers().toArray()).length;
+        for (int i = 0; i < j; i++) {
             Player p = arrayOfPlayer[i];
             if (p.getName().equalsIgnoreCase(shop.getShopOwner())) {
-                p.sendMessage(plugin.prefix + "Your shop, " + shop.getShopName() + ", has expired.");
+                p.sendMessage(ShopAds.prefix + "Your shop, " + shop.getShopName() + ", has expired.");
             }
         }
     }

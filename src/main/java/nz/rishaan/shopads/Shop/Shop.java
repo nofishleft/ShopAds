@@ -1,27 +1,24 @@
 package nz.rishaan.shopads.Shop;
 
 
+import nz.rishaan.shopads.ShopAds;
+import org.bukkit.ChatColor;
+import org.bukkit.Location;
+import org.bukkit.World;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
-import org.bukkit.ChatColor;
-import org.bukkit.Location;
-import org.bukkit.Server;
-import org.bukkit.World;
-import nz.rishaan.shopads.ShopAds;
-import nz.rishaan.shopads.Util.Messaging.ShopAdsMessage;
-import nz.rishaan.shopads.Util.ShopAdsConfig;
 
 public class Shop
-        implements Serializable
-{
+        implements Serializable {
     private String shopName;
     private AdLocation location;
-    private String creator;
+    private final String creator;
     private Date timeToEnd;
-    private boolean runsForever;
+    private final boolean runsForever;
     private String advertisement;
     private ArrayList<String> worldsToAdvertiseIn;
     private boolean isAdvertising;
@@ -31,30 +28,27 @@ public class Shop
     private String shopColor;
     private String adColor;
 
-    public Shop(String newShopName, Location shopLocation, String newCreator, Date time, boolean forever, World w, String ad, String[] advertiseTo, boolean advertising)
-    {
+    public Shop(String newShopName, Location shopLocation, String newCreator, Date time, boolean forever, World w, String ad, String[] advertiseTo, boolean advertising) {
         this.shopName = newShopName;
         this.location = new AdLocation(shopLocation);
         this.creator = newCreator;
         this.timeToEnd = time;
         this.advertisement = ad;
         this.runsForever = forever;
-        this.worldsToAdvertiseIn = new ArrayList(Arrays.asList(advertiseTo));
+        this.worldsToAdvertiseIn = new ArrayList<>(Arrays.asList(advertiseTo));
         this.isExpired = false;
         this.moneyEarned = 0.0D;
         this.timesTeleportedTo = 0;
         this.isAdvertising = advertising;
-        this.shopColor = ShopAds.shopads.config.getDefaultShopColor();
-        this.adColor = ShopAds.shopads.config.getDefaultAdColor();
+        this.shopColor = ShopAds.config.getDefaultShopColor();
+        this.adColor = ShopAds.config.getDefaultAdColor();
     }
 
-    public World getWorld()
-    {
+    public World getWorld() {
         return this.location.getWorld();
     }
 
-    public boolean advertisesIn(String world)
-    {
+    public boolean advertisesIn(String world) {
         for (String s : this.worldsToAdvertiseIn) {
             if (s.equalsIgnoreCase(world)) {
                 return true;
@@ -63,72 +57,59 @@ public class Shop
         return false;
     }
 
-    public void setAdColor(String adColor)
-    {
+    public void setAdColor(String adColor) {
         this.adColor = adColor;
     }
 
-    public void setShopColor(String shopColor)
-    {
+    public void setShopColor(String shopColor) {
         this.shopColor = shopColor;
     }
 
-    public ChatColor getAdColor()
-    {
-        return ShopAds.shopads.message.getColor(this.adColor);
+    public ChatColor getAdColor() {
+        return ShopAds.message.getColor(this.adColor);
     }
 
-    public ChatColor getShopColor()
-    {
-        return ShopAds.shopads.message.getColor(this.shopColor);
+    public ChatColor getShopColor() {
+        return ShopAds.message.getColor(this.shopColor);
     }
 
-    public World[] getWorldsToAdvertiseIn()
-    {
+    public World[] getWorldsToAdvertiseIn() {
         World[] worlds = new World[this.worldsToAdvertiseIn.size()];
         for (int i = 0; i < worlds.length; i++) {
-            worlds[i] = ShopAds.shopads.server.getWorld((String)this.worldsToAdvertiseIn.get(i));
+            worlds[i] = ShopAds.server.getWorld(this.worldsToAdvertiseIn.get(i));
         }
         return worlds;
     }
 
-    public double getMoneyEarned()
-    {
+    public double getMoneyEarned() {
         return this.moneyEarned;
     }
 
-    public String getShopName()
-    {
+    public String getShopName() {
         return this.shopName;
     }
 
-    public int getTimesTeleportedTo()
-    {
+    public int getTimesTeleportedTo() {
         return this.timesTeleportedTo;
     }
 
-    public AdLocation getLocation()
-    {
+    public AdLocation getLocation() {
         return this.location;
     }
 
-    public String getAd()
-    {
+    public String getAd() {
         return this.advertisement;
     }
 
-    public Date getTimeToEnd()
-    {
+    public Date getTimeToEnd() {
         return this.timeToEnd;
     }
 
-    public String getShopOwner()
-    {
+    public String getShopOwner() {
         return this.creator;
     }
 
-    public boolean shopExpired()
-    {
+    public boolean shopExpired() {
         if (this.runsForever) {
             return false;
         }
@@ -139,79 +120,65 @@ public class Shop
         return this.timeToEnd.before(cal.getTime());
     }
 
-    public boolean runsForever()
-    {
+    public boolean runsForever() {
         return this.runsForever;
     }
 
-    public boolean shopAdvertising()
-    {
+    public boolean shopAdvertising() {
         return this.isAdvertising;
     }
 
-    public void setShopAdvertising(boolean b)
-    {
+    public void setShopAdvertising(boolean b) {
         this.isAdvertising = b;
     }
 
-    public void setShopExpired(boolean b)
-    {
+    public void setShopExpired(boolean b) {
         this.isExpired = b;
     }
 
-    public void setTimeToEnd(Date time)
-    {
+    public void setTimeToEnd(Date time) {
         this.timeToEnd = time;
     }
 
-    public void setWorldsToAdvertiseIn(String[] w)
-    {
-        this.worldsToAdvertiseIn = new ArrayList(Arrays.asList(w));
+    public void setWorldsToAdvertiseIn(String[] w) {
+        this.worldsToAdvertiseIn = new ArrayList<>(Arrays.asList(w));
     }
 
-    public void shopTeleportedTo()
-    {
+    public void shopTeleportedTo() {
         this.timesTeleportedTo += 1;
     }
 
-    public void addMoneyEarned(double money)
-    {
+    public void addMoneyEarned(double money) {
         this.moneyEarned = money;
     }
 
-    public void setLocation(Location location)
-    {
+    public void setLocation(Location location) {
         this.location = new AdLocation(location);
     }
 
-    public void setAdvertisement(String advertisement)
-    {
+    public void setAdvertisement(String advertisement) {
         this.advertisement = advertisement;
     }
 
-    public void setIsAdvertising(boolean isAdvertising)
-    {
+    public void setIsAdvertising(boolean isAdvertising) {
         this.isAdvertising = isAdvertising;
     }
 
-    public void setShopName(String shopName)
-    {
+    public void setShopName(String shopName) {
         this.shopName = shopName;
     }
 
-    public void addWorldToAdvertiseIn(World world)
-    {
+    public void addWorldToAdvertiseIn(World world) {
         if (this.worldsToAdvertiseIn.contains(world.getName())) {
             return;
         }
         this.worldsToAdvertiseIn.add(world.getName());
     }
 
-    public String[] getWorldsToAdvertiseInAsString()
-    {
+    public String[] getWorldsToAdvertiseInAsString() {
         String[] worlds = new String[this.worldsToAdvertiseIn.size()];
         for (int i = 0; i < worlds.length; i++) {
-            worlds[i] = ((String)this.worldsToAdvertiseIn.get(i));
+            worlds[i] = this.worldsToAdvertiseIn.get(i);
         }
         return worlds;
     }

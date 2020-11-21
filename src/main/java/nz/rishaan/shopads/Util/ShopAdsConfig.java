@@ -6,8 +6,7 @@ import nz.rishaan.shopads.Util.Messaging.ShopAdsMessage;
 import org.bukkit.ChatColor;
 import org.bukkit.Warning;
 
-public class ShopAdsConfig
-{
+public class ShopAdsConfig {
     private int announceInterval;
     private boolean sendToAll;
     private boolean enableTp;
@@ -34,52 +33,44 @@ public class ShopAdsConfig
     private double setShopColorCost;
     private double setAdColorCost;
 
-    public void setDefaultAdColor(String defaultAdColor)
-    {
+    public void setDefaultAdColor(String defaultAdColor) {
         this.defaultAdColor = defaultAdColor;
         ShopAds.shopads.getConfig().set("defaultAdColor", defaultAdColor);
     }
 
-    public void setDefaultShopColor(String defaultShopColor)
-    {
+    public void setDefaultShopColor(String defaultShopColor) {
         this.defaultShopColor = defaultShopColor;
         ShopAds.shopads.getConfig().set("defaultShopColor", defaultShopColor);
     }
 
-    public void setLabelColor(String color)
-    {
+    public void setLabelColor(String color) {
         ShopAdsMessage.console.debug("setting label color to :" + color);
         this.lColor = color;
         ShopAds.shopads.getConfig().set("labelColor", color);
         ShopAdsMessage.console.debug("after lcolor=color : " + this.lColor);
     }
 
-    public void setMessageColor(String color)
-    {
+    public void setMessageColor(String color) {
         ShopAdsMessage.console.debug("setting message color");
         this.mColor = color;
         ShopAds.shopads.getConfig().set("messageColor", color);
     }
 
-    public int getAnnounceRadius()
-    {
+    public int getAnnounceRadius() {
         return this.announceRadius;
     }
 
-    public void setAnnounceRadius(int announceRadius)
-    {
+    public void setAnnounceRadius(int announceRadius) {
         this.announceRadius = announceRadius;
         ShopAds.shopads.getConfig().set("announceRadius", announceRadius);
     }
 
-    public String getTpCostDestination()
-    {
+    public String getTpCostDestination() {
         return this.tpCostDestination;
     }
 
     @Warning(reason = "using if/else instead of string switch")
-    public void setTpCostDestination(String tpCostDestination)
-    {
+    public void setTpCostDestination(String tpCostDestination) {
         if ((tpCostDestination.equalsIgnoreCase("player")) || (tpCostDestination.equalsIgnoreCase("shop")) || (tpCostDestination.equalsIgnoreCase("owner"))) {
             this.tpCostDestination = "shop";
         } else if ((tpCostDestination.equalsIgnoreCase("server")) || (tpCostDestination.equalsIgnoreCase("nobody")) || (tpCostDestination.equalsIgnoreCase("consume"))) {
@@ -91,231 +82,189 @@ public class ShopAdsConfig
         ShopAdsMessage.console.debug("tpCostDestination set to '" + this.tpCostDestination + "'.");
     }
 
-    public boolean getDebug()
-    {
+    public boolean getDebug() {
         return this.debug;
     }
 
-    public void setDebug(boolean debug)
-    {
+    public void setDebug(boolean debug) {
         this.debug = debug;
         ShopAds.shopads.getConfig().set("debug", debug);
     }
 
-    public double getAdCost()
-    {
+    public double getAdCost() {
         return this.adCost;
     }
 
-    public void setAdCost(double adCost)
-    {
+    public void setAdCost(double adCost) {
         this.adCost = adCost;
         ShopAds.shopads.getConfig().set("adCost", adCost);
     }
 
-    public boolean getAdsOverWorlds()
-    {
+    public boolean getAdsOverWorlds() {
         return this.adsOverWorlds;
     }
 
-    public void setAdsOverWorlds(boolean adsOverWorlds)
-    {
+    public void setAdsOverWorlds(boolean adsOverWorlds) {
         this.adsOverWorlds = adsOverWorlds;
         ShopAds.shopads.getConfig().set("adsOverWorlds", adsOverWorlds);
     }
 
-    public int getAnnounceInterval()
-    {
+    public int getAnnounceInterval() {
         return this.announceInterval;
     }
 
-    public void setAnnounceInterval(int announceInterval)
-    {
+    public void setAnnounceInterval(int announceInterval) {
         this.announceInterval = announceInterval;
         ShopAds.shopads.getConfig().set("announceInterval", announceInterval);
     }
 
-    public boolean getEnableTp()
-    {
+    public boolean getEnableTp() {
         return this.enableTp;
     }
 
-    public void setEnableTp(boolean enableTp)
-    {
+    public void setEnableTp(boolean enableTp) {
         this.enableTp = enableTp;
         ShopAds.shopads.getConfig().set("enableTp", enableTp);
     }
 
-    public int getMaxAdRunTime()
-    {
+    public int getMaxAdRunTime() {
         return this.maxAdRunTime;
     }
 
-    public void setMaxAdRunTime(int maxAdRunTime)
-    {
+    public void setMaxAdRunTime(int maxAdRunTime) {
         this.maxAdRunTime = maxAdRunTime;
         ShopAds.shopads.getConfig().set("maxAdRunTie", maxAdRunTime);
     }
 
-    public boolean getRandomOrder()
-    {
+    public boolean getRandomOrder() {
         return this.randomOrder;
     }
 
-    public void setRandomOrder(boolean randomOrder)
-    {
+    public void setRandomOrder(boolean randomOrder) {
         this.randomOrder = randomOrder;
         ShopAds.shopads.getConfig().set("randomOrder", randomOrder);
     }
 
-    public boolean getSendToAll()
-    {
+    public boolean getSendToAll() {
         return this.sendToAll;
     }
 
-    public void setSendToAll(boolean sendToAll)
-    {
+    public void setSendToAll(boolean sendToAll) {
         this.sendToAll = sendToAll;
         ShopAds.shopads.getConfig().set("sendToAll", sendToAll);
     }
 
-    public int getShopsPerPlayer()
-    {
+    public int getShopsPerPlayer() {
         return this.shopsPerPlayer;
     }
 
-    public void setShopsPerPlayer(int shopsPerPlayer)
-    {
+    public void setShopsPerPlayer(int shopsPerPlayer) {
         this.shopsPerPlayer = shopsPerPlayer;
         ShopAds.shopads.getConfig().set("shopsPerPlayer", shopsPerPlayer);
     }
 
-    public double getTpCost()
-    {
+    public double getTpCost() {
         return this.tpCost;
     }
 
-    public void setTpCost(double tpCost)
-    {
+    public void setTpCost(double tpCost) {
         this.tpCost = tpCost;
         ShopAds.shopads.getConfig().set("tpCost", tpCost);
     }
 
-    public int getTpTimeout()
-    {
+    public int getTpTimeout() {
         return this.tpTimeout;
     }
 
-    public void setTpTimeout(int tpTimeout)
-    {
+    public void setTpTimeout(int tpTimeout) {
         this.tpTimeout = tpTimeout;
         ShopAds.shopads.getConfig().set("tpTimeout", tpTimeout);
     }
 
-    public double getTransWorldAddition()
-    {
+    public double getTransWorldAddition() {
         return this.transWorldAddition;
     }
 
-    public void setTransWorldAddition(double transWorldAddition)
-    {
+    public void setTransWorldAddition(double transWorldAddition) {
         this.transWorldAddition = transWorldAddition;
         ShopAds.shopads.getConfig().set("transWorldAddition", transWorldAddition);
     }
 
-    public boolean getAnnounceDebug()
-    {
+    public boolean getAnnounceDebug() {
         return this.announceDebug;
     }
 
-    public void setAnnounceDebug(boolean announceDebug)
-    {
+    public void setAnnounceDebug(boolean announceDebug) {
         this.announceDebug = announceDebug;
         ShopAds.shopads.getConfig().set("announceDebug", announceDebug);
     }
 
-    public ChatColor getLabelColor()
-    {
+    public ChatColor getLabelColor() {
         return ShopAds.message.getColor(this.lColor);
     }
 
-    public ChatColor getMessageColor()
-    {
+    public ChatColor getMessageColor() {
         return ShopAds.message.getColor(this.mColor);
     }
 
-    public String getDefaultShopColor()
-    {
+    public String getDefaultShopColor() {
         return this.defaultShopColor;
     }
 
-    public String getDefaultAdColor()
-    {
+    public String getDefaultAdColor() {
         return this.defaultAdColor;
     }
 
-    public double getSetLocationCost()
-    {
+    public double getSetLocationCost() {
         return this.setLocationCost;
     }
 
-    public double getSetWorldCost()
-    {
+    public double getSetWorldCost() {
         return this.setWorldCost;
     }
 
-    public double getSetNameCost()
-    {
+    public double getSetNameCost() {
         return this.setNameCost;
     }
 
-    public void setSetNameCost(double setNameCost)
-    {
+    public void setSetNameCost(double setNameCost) {
         this.setNameCost = setNameCost;
         ShopAds.shopads.getConfig().set("setNameCost", setNameCost);
     }
 
-    public double getSetAdCost()
-    {
+    public double getSetAdCost() {
         return this.setAdCost;
     }
 
-    public void setSetAdCost(double setAdCost)
-    {
+    public void setSetAdCost(double setAdCost) {
         this.setAdCost = setAdCost;
         ShopAds.shopads.getConfig().set("setAdCost", setAdCost);
     }
 
-    public void setSetLocationCost(double setLocationCost)
-    {
+    public void setSetLocationCost(double setLocationCost) {
         this.setLocationCost = setLocationCost;
         ShopAds.shopads.getConfig().set("setocationCOst", setLocationCost);
     }
 
-    public void setSetWorldCost(double setWorldCost)
-    {
+    public void setSetWorldCost(double setWorldCost) {
         this.setWorldCost = setWorldCost;
         ShopAds.shopads.getConfig().set("setWorldCost", setWorldCost);
     }
 
-    public double getSetShopColorCost()
-    {
+    public double getSetShopColorCost() {
         return this.setShopColorCost;
     }
 
-    public void setSetShopColorCost(double setShopColorCost)
-    {
+    public void setSetShopColorCost(double setShopColorCost) {
         this.setShopColorCost = setShopColorCost;
         ShopAds.shopads.getConfig().set("setShopColorCost", setShopColorCost);
     }
 
-    public double getSetAdColorCost()
-    {
+    public double getSetAdColorCost() {
         return this.setAdColorCost;
     }
 
-    public void setSetAdColorCost(double setAdColorCost)
-    {
+    public void setSetAdColorCost(double setAdColorCost) {
         this.setAdColorCost = setAdColorCost;
         ShopAds.shopads.getConfig().set("setAdColorCost", setAdColorCost);
     }

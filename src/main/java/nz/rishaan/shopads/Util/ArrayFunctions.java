@@ -1,13 +1,8 @@
 package nz.rishaan.shopads.Util;
 
-import nz.rishaan.shopads.ShopAds;
-
-public class ArrayFunctions
-{
-    public Object[] addToArray(Object[] O, Object o)
-    {
-        if ((O != null) && (O.length > 0))
-        {
+public class ArrayFunctions {
+    public Object[] addToArray(Object[] O, Object o) {
+        if ((O != null) && (O.length > 0)) {
             Object[] transfer = new Object[O.length + 1];
             System.arraycopy(O, 0, transfer, 0, O.length);
             transfer[O.length] = o;
