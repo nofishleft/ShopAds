@@ -1,10 +1,10 @@
 package nz.rishaan.shopads.Util;
 
 
-import org.bukkit.ChatColor;
 import nz.rishaan.shopads.ShopAds;
-import nz.rishaan.shopads.Util.Messaging.ConsoleMessage;
 import nz.rishaan.shopads.Util.Messaging.ShopAdsMessage;
+import org.bukkit.ChatColor;
+import org.bukkit.Warning;
 
 public class ShopAdsConfig
 {
@@ -37,17 +37,20 @@ public class ShopAdsConfig
     public void setDefaultAdColor(String defaultAdColor)
     {
         this.defaultAdColor = defaultAdColor;
+        ShopAds.shopads.getConfig().set("defaultAdColor", defaultAdColor);
     }
 
     public void setDefaultShopColor(String defaultShopColor)
     {
         this.defaultShopColor = defaultShopColor;
+        ShopAds.shopads.getConfig().set("defaultShopColor", defaultShopColor);
     }
 
     public void setLabelColor(String color)
     {
         ShopAdsMessage.console.debug("setting label color to :" + color);
         this.lColor = color;
+        ShopAds.shopads.getConfig().set("labelColor", color);
         ShopAdsMessage.console.debug("after lcolor=color : " + this.lColor);
     }
 
@@ -55,6 +58,7 @@ public class ShopAdsConfig
     {
         ShopAdsMessage.console.debug("setting message color");
         this.mColor = color;
+        ShopAds.shopads.getConfig().set("messageColor", color);
     }
 
     public int getAnnounceRadius()
@@ -65,6 +69,7 @@ public class ShopAdsConfig
     public void setAnnounceRadius(int announceRadius)
     {
         this.announceRadius = announceRadius;
+        ShopAds.shopads.getConfig().set("announceRadius", announceRadius);
     }
 
     public String getTpCostDestination()
@@ -72,6 +77,7 @@ public class ShopAdsConfig
         return this.tpCostDestination;
     }
 
+    @Warning(reason = "using if/else instead of string switch")
     public void setTpCostDestination(String tpCostDestination)
     {
         if ((tpCostDestination.equalsIgnoreCase("player")) || (tpCostDestination.equalsIgnoreCase("shop")) || (tpCostDestination.equalsIgnoreCase("owner"))) {
@@ -81,6 +87,7 @@ public class ShopAdsConfig
         } else {
             this.tpCostDestination = "server";
         }
+        ShopAds.shopads.getConfig().set("tpCostDestination", this.tpCostDestination);
         ShopAdsMessage.console.debug("tpCostDestination set to '" + this.tpCostDestination + "'.");
     }
 
@@ -92,6 +99,7 @@ public class ShopAdsConfig
     public void setDebug(boolean debug)
     {
         this.debug = debug;
+        ShopAds.shopads.getConfig().set("debug", debug);
     }
 
     public double getAdCost()
@@ -102,6 +110,7 @@ public class ShopAdsConfig
     public void setAdCost(double adCost)
     {
         this.adCost = adCost;
+        ShopAds.shopads.getConfig().set("adCost", adCost);
     }
 
     public boolean getAdsOverWorlds()
@@ -112,6 +121,7 @@ public class ShopAdsConfig
     public void setAdsOverWorlds(boolean adsOverWorlds)
     {
         this.adsOverWorlds = adsOverWorlds;
+        ShopAds.shopads.getConfig().set("adsOverWorlds", adsOverWorlds);
     }
 
     public int getAnnounceInterval()
@@ -122,6 +132,7 @@ public class ShopAdsConfig
     public void setAnnounceInterval(int announceInterval)
     {
         this.announceInterval = announceInterval;
+        ShopAds.shopads.getConfig().set("announceInterval", announceInterval);
     }
 
     public boolean getEnableTp()
@@ -132,6 +143,7 @@ public class ShopAdsConfig
     public void setEnableTp(boolean enableTp)
     {
         this.enableTp = enableTp;
+        ShopAds.shopads.getConfig().set("enableTp", enableTp);
     }
 
     public int getMaxAdRunTime()
@@ -142,6 +154,7 @@ public class ShopAdsConfig
     public void setMaxAdRunTime(int maxAdRunTime)
     {
         this.maxAdRunTime = maxAdRunTime;
+        ShopAds.shopads.getConfig().set("maxAdRunTie", maxAdRunTime);
     }
 
     public boolean getRandomOrder()
@@ -152,6 +165,7 @@ public class ShopAdsConfig
     public void setRandomOrder(boolean randomOrder)
     {
         this.randomOrder = randomOrder;
+        ShopAds.shopads.getConfig().set("randomOrder", randomOrder);
     }
 
     public boolean getSendToAll()
@@ -162,6 +176,7 @@ public class ShopAdsConfig
     public void setSendToAll(boolean sendToAll)
     {
         this.sendToAll = sendToAll;
+        ShopAds.shopads.getConfig().set("sendToAll", sendToAll);
     }
 
     public int getShopsPerPlayer()
@@ -172,6 +187,7 @@ public class ShopAdsConfig
     public void setShopsPerPlayer(int shopsPerPlayer)
     {
         this.shopsPerPlayer = shopsPerPlayer;
+        ShopAds.shopads.getConfig().set("shopsPerPlayer", shopsPerPlayer);
     }
 
     public double getTpCost()
@@ -182,6 +198,7 @@ public class ShopAdsConfig
     public void setTpCost(double tpCost)
     {
         this.tpCost = tpCost;
+        ShopAds.shopads.getConfig().set("tpCost", tpCost);
     }
 
     public int getTpTimeout()
@@ -192,6 +209,7 @@ public class ShopAdsConfig
     public void setTpTimeout(int tpTimeout)
     {
         this.tpTimeout = tpTimeout;
+        ShopAds.shopads.getConfig().set("tpTimeout", tpTimeout);
     }
 
     public double getTransWorldAddition()
@@ -202,6 +220,7 @@ public class ShopAdsConfig
     public void setTransWorldAddition(double transWorldAddition)
     {
         this.transWorldAddition = transWorldAddition;
+        ShopAds.shopads.getConfig().set("transWorldAddition", transWorldAddition);
     }
 
     public boolean getAnnounceDebug()
@@ -212,16 +231,17 @@ public class ShopAdsConfig
     public void setAnnounceDebug(boolean announceDebug)
     {
         this.announceDebug = announceDebug;
+        ShopAds.shopads.getConfig().set("announceDebug", announceDebug);
     }
 
     public ChatColor getLabelColor()
     {
-        return ShopAds.shopads.message.getColor(this.lColor);
+        return ShopAds.message.getColor(this.lColor);
     }
 
     public ChatColor getMessageColor()
     {
-        return ShopAds.shopads.message.getColor(this.mColor);
+        return ShopAds.message.getColor(this.mColor);
     }
 
     public String getDefaultShopColor()
@@ -252,6 +272,7 @@ public class ShopAdsConfig
     public void setSetNameCost(double setNameCost)
     {
         this.setNameCost = setNameCost;
+        ShopAds.shopads.getConfig().set("setNameCost", setNameCost);
     }
 
     public double getSetAdCost()
@@ -262,16 +283,19 @@ public class ShopAdsConfig
     public void setSetAdCost(double setAdCost)
     {
         this.setAdCost = setAdCost;
+        ShopAds.shopads.getConfig().set("setAdCost", setAdCost);
     }
 
     public void setSetLocationCost(double setLocationCost)
     {
         this.setLocationCost = setLocationCost;
+        ShopAds.shopads.getConfig().set("setocationCOst", setLocationCost);
     }
 
     public void setSetWorldCost(double setWorldCost)
     {
         this.setWorldCost = setWorldCost;
+        ShopAds.shopads.getConfig().set("setWorldCost", setWorldCost);
     }
 
     public double getSetShopColorCost()
@@ -282,6 +306,7 @@ public class ShopAdsConfig
     public void setSetShopColorCost(double setShopColorCost)
     {
         this.setShopColorCost = setShopColorCost;
+        ShopAds.shopads.getConfig().set("setShopColorCost", setShopColorCost);
     }
 
     public double getSetAdColorCost()
@@ -292,5 +317,6 @@ public class ShopAdsConfig
     public void setSetAdColorCost(double setAdColorCost)
     {
         this.setAdColorCost = setAdColorCost;
+        ShopAds.shopads.getConfig().set("setAdColorCost", setAdColorCost);
     }
 }

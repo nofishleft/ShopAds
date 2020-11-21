@@ -1,277 +1,88 @@
 package nz.rishaan.shopads.Util;
 
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.EOFException;
+import nz.rishaan.shopads.Player.ShopAdsPlayer;
+import nz.rishaan.shopads.Shop.Shop;
+import nz.rishaan.shopads.ShopAds;
+import nz.rishaan.shopads.Util.Messaging.ShopAdsMessage;
+import org.bukkit.configuration.file.FileConfiguration;
+
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.bukkit.entity.Player;
-import org.bukkit.plugin.Plugin;
-import nz.rishaan.shopads.Player.PlayerHandler;
-import nz.rishaan.shopads.Player.ShopAdsPlayer;
-import nz.rishaan.shopads.Shop.Shop;
-import nz.rishaan.shopads.Shop.ShopHandler;
-import nz.rishaan.shopads.ShopAds;
-import nz.rishaan.shopads.Util.Messaging.Command.SetCommandMessage;
-import nz.rishaan.shopads.Util.Messaging.ConsoleMessage;
-import nz.rishaan.shopads.Util.Messaging.ShopAdsMessage;
 
 public class ShopAdsIO
 {
-    private File configFile = new File("plugins/ShopAds/config.yml");
-    private File shopsFile = new File("plugins/ShopAds/shops.dat");
-    private File playerFile = new File("plugins/ShopAds/player.dat");
-    private File shopAdsDir = new File("plugins/ShopAds");
-    private ArrayList<String> configArray = new ArrayList();
+    private final File configFile = new File("plugins/ShopAds/config.yml");
+    private final File shopsFile = new File("plugins/ShopAds/shops.dat");
+    private final File playerFile = new File("plugins/ShopAds/player.dat");
+    private final File shopAdsDir = new File("plugins/ShopAds");
 
-    public boolean loadConfig()
-    {
-        ShopAdsMessage.console.debug("loadingConfig");
-        Properties pr = new Properties();
-        if (this.configFile.exists())
-        {
-            try
-            {
-                FileInputStream in = new FileInputStream(this.configFile);
-                pr.load(in);
-                try
-                {
-                    ShopAds.shopads.config.setAnnounceInterval(Integer.parseInt(pr.getProperty("announceInterval")));
-                }
-                catch (Exception e)
-                {
-                    ShopAdsMessage.console.checkConfigOption("announceInterval");
-                }
-                try
-                {
-                    ShopAds.shopads.config.setSendToAll(Boolean.parseBoolean(pr.getProperty("sendToAll")));
-                }
-                catch (Exception e)
-                {
-                    ShopAdsMessage.console.checkConfigOption("sendToAll");
-                }
-                try
-                {
-                    ShopAds.shopads.config.setEnableTp(Boolean.parseBoolean(pr.getProperty("enableTp")));
-                }
-                catch (Exception e)
-                {
-                    ShopAdsMessage.console.checkConfigOption("enableTp");
-                }
-                try
-                {
-                    ShopAds.shopads.config.setAdsOverWorlds(Boolean.parseBoolean(pr.getProperty("adsOverWorlds")));
-                }
-                catch (Exception e)
-                {
-                    ShopAdsMessage.console.checkConfigOption("adsOverWorlds");
-                }
-                try
-                {
-                    ShopAds.shopads.config.setRandomOrder(Boolean.parseBoolean(pr.getProperty("enableTp")));
-                }
-                catch (Exception e)
-                {
-                    ShopAdsMessage.console.checkConfigOption("enableTp");
-                }
-                try
-                {
-                    ShopAds.shopads.config.setAdCost(Double.parseDouble(pr.getProperty("adCost")));
-                }
-                catch (Exception e)
-                {
-                    ShopAdsMessage.console.checkConfigOption("adCost");
-                }
-                try
-                {
-                    ShopAds.shopads.config.setMaxAdRunTime(Integer.parseInt(pr.getProperty("maxAdRunTime")));
-                }
-                catch (Exception e)
-                {
-                    ShopAdsMessage.console.checkConfigOption("maxAdRunTime");
-                }
-                try
-                {
-                    ShopAds.shopads.config.setShopsPerPlayer(Integer.parseInt(pr.getProperty("shopsPerPlayer")));
-                }
-                catch (Exception e)
-                {
-                    ShopAdsMessage.console.checkConfigOption("shopsPerPlayer");
-                }
-                try
-                {
-                    ShopAds.shopads.config.setTpCost(Double.parseDouble(pr.getProperty("tpCost")));
-                }
-                catch (Exception e)
-                {
-                    ShopAdsMessage.console.checkConfigOption("tpCost");
-                }
-                try
-                {
-                    ShopAds.shopads.config.setTpTimeout(Integer.parseInt(pr.getProperty("tpTimeout")));
-                }
-                catch (Exception e)
-                {
-                    ShopAdsMessage.console.checkConfigOption("tpTimeout");
-                }
-                try
-                {
-                    ShopAds.shopads.config.setTransWorldAddition(Integer.parseInt(pr.getProperty("transWorldAddition")));
-                }
-                catch (Exception e)
-                {
-                    ShopAdsMessage.console.checkConfigOption("transWorldAddition");
-                }
-                try
-                {
-                    ShopAds.shopads.config.setAnnounceRadius(Integer.parseInt(pr.getProperty("announceRadius")));
-                }
-                catch (Exception e)
-                {
-                    ShopAdsMessage.console.checkConfigOption("announceRadius");
-                }
-                try
-                {
-                    ShopAds.shopads.config.setLabelColor(pr.getProperty("labelColor").toUpperCase());
-                }
-                catch (Exception e)
-                {
-                    ShopAdsMessage.console.checkConfigOption("labelColor");
-                }
-                try
-                {
-                    ShopAds.shopads.config.setMessageColor(pr.getProperty("messageColor").toUpperCase());
-                }
-                catch (Exception e)
-                {
-                    ShopAdsMessage.console.checkConfigOption("messageColor");
-                }
-                try
-                {
-                    ShopAds.shopads.config.setTpCostDestination(pr.getProperty("tpCostDestination"));
-                }
-                catch (Exception e)
-                {
-                    ShopAdsMessage.console.checkConfigOption("tpCostDestination");
-                }
-                try
-                {
-                    ShopAds.shopads.config.setRandomOrder(Boolean.parseBoolean(pr.getProperty("randomOrder")));
-                }
-                catch (Exception e)
-                {
-                    ShopAdsMessage.console.checkConfigOption("randomOrder");
-                }
-                try
-                {
-                    ShopAds.shopads.config.setDebug(Boolean.parseBoolean(pr.getProperty("debug")));
-                }
-                catch (Exception e)
-                {
-                    ShopAds.shopads.config.setDebug(false);
-                }
-                try
-                {
-                    ShopAds.shopads.config.setAnnounceDebug(Boolean.parseBoolean(pr.getProperty("announceDebug")));
-                }
-                catch (Exception e)
-                {
-                    ShopAds.shopads.config.setDebug(false);
-                }
-                try
-                {
-                    ShopAds.shopads.config.setDefaultAdColor(pr.getProperty("defaultAdColor"));
-                }
-                catch (Exception e)
-                {
-                    ShopAdsMessage.console.checkConfigOption("defaultAdColor");
-                }
-                try
-                {
-                    ShopAds.shopads.config.setDefaultShopColor(pr.getProperty("defaultShopColor"));
-                }
-                catch (Exception e)
-                {
-                    ShopAdsMessage.console.checkConfigOption("defaultShopColor");
-                }
-                try
-                {
-                    ShopAds.shopads.config.setSetShopColorCost(Double.parseDouble(pr.getProperty("setShopColorCost")));
-                }
-                catch (Exception e)
-                {
-                    ShopAdsMessage.console.checkConfigOption("setShopColorCost");
-                }
-                try
-                {
-                    ShopAds.shopads.config.setSetAdColorCost(Double.parseDouble(pr.getProperty("setAdColorCost")));
-                }
-                catch (Exception e)
-                {
-                    ShopAdsMessage.console.checkConfigOption("setAdColorCost");
-                }
-                try
-                {
-                    ShopAds.shopads.config.setSetAdColorCost(Double.parseDouble(pr.getProperty("setLocationCost")));
-                }
-                catch (Exception e)
-                {
-                    ShopAdsMessage.console.checkConfigOption("setLocationCost");
-                }
-                try
-                {
-                    ShopAds.shopads.config.setSetAdColorCost(Double.parseDouble(pr.getProperty("setWorldCost")));
-                }
-                catch (Exception e)
-                {
-                    ShopAdsMessage.console.checkConfigOption("setWorldCost");
-                }
-                try
-                {
-                    ShopAds.shopads.config.setSetAdColorCost(Double.parseDouble(pr.getProperty("setNameCost")));
-                }
-                catch (Exception e)
-                {
-                    ShopAdsMessage.console.checkConfigOption("setNameCost");
-                }
-                try
-                {
-                    ShopAds.shopads.config.setSetAdColorCost(Double.parseDouble(pr.getProperty("setAdCost")));
-                }
-                catch (Exception e)
-                {
-                    ShopAdsMessage.console.checkConfigOption("setAdCost");
-                }
-                ShopAds.shopads.log.info("[ShopAds2] Config loaded!");
-            }
-            catch (IOException e)
-            {
-                ShopAds.shopads.log.info("[ShopAds2] Config file exists but is corrupt, please delete it!");
-            }
-        }
-        else
-        {
-            if (!this.shopAdsDir.exists()) {
+    public void loadConfig() {
+        if (!configFile.exists()) {
+            if (!this.shopAdsDir.exists())
                 this.shopAdsDir.mkdir();
-            }
+
             createDefaultConfig();
-            loadConfig();
-            return true;
         }
-        return false;
+
+        ShopAdsMessage.console.debug("loadingConfig");
+
+        ShopAdsConfig config = ShopAds.config;
+        FileConfiguration fc = ShopAds.shopads.getConfig();
+
+        config.setAnnounceInterval(fc.getInt("announceInterval", 240));
+
+        config.setSendToAll(fc.getBoolean("announceInterval", true));
+
+        config.setEnableTp(fc.getBoolean("enableTP", true));
+
+        config.setAdsOverWorlds(fc.getBoolean("adsOverWorlds", true));
+
+        config.setRandomOrder(fc.getBoolean("randomOrder", true));
+
+        config.setAdCost(fc.getDouble("adCost", 20));
+
+        config.setMaxAdRunTime(fc.getInt("maxAdRunTime", 24));
+
+        config.setShopsPerPlayer(fc.getInt("shopsPerPlayer", 1));
+
+        config.setTpCost(fc.getDouble("tpCost", 0));
+
+        config.setTpTimeout(fc.getInt("tpTimeout", 60));
+
+        config.setTransWorldAddition(fc.getDouble("transWorldAddition", 0));
+
+        config.setAnnounceRadius(fc.getInt("announceRadius", 0));
+
+        config.setLabelColor(fc.getString("labelColor", "Gold").toUpperCase());
+
+        config.setMessageColor(fc.getString("messageColor", "Gray").toUpperCase());
+
+        config.setTpCostDestination(fc.getString("tpCostDestination", "shop"));
+
+        config.setDebug(fc.getBoolean("debug", false));
+
+        config.setAnnounceDebug(fc.getBoolean("announceDebug", false));
+
+        config.setDefaultAdColor(fc.getString("defaultAdColor", "Gray"));
+
+        config.setDefaultShopColor(fc.getString("defaultShopColor", "Gold"));
+
+        config.setSetShopColorCost(fc.getDouble("setShopColorCost", 0));
+
+        config.setSetAdColorCost(fc.getDouble("setAdColorCost", 0));
+
+        config.setSetNameCost(fc.getDouble("setNameCost", 0));
+
+        config.setSetAdCost(fc.getDouble("setAdCost", 0));
     }
 
     public boolean loadPlayers()
@@ -295,7 +106,7 @@ public class ShopAdsIO
             FileInputStream fis = new FileInputStream(this.playerFile);
             in = new ObjectInputStream(fis);
         }
-        catch (IOException localIOException1) {}
+        catch (IOException ignored) {}
         int playerObjects = getObjectCount(this.playerFile);
         ShopAdsPlayer player = null;
         boolean end = false;
@@ -305,21 +116,17 @@ public class ShopAdsIO
             {
                 player = (ShopAdsPlayer)in.readObject();
             }
-            catch (IOException ex)
+            catch (IOException | NullPointerException ex)
             {
                 end = true;
             }
             catch (ClassNotFoundException ex)
             {
-                ShopAds.shopads.log.info("Something terribly important is missing (ShopAdsPlayer)");
+                ShopAds.log.info("Something terribly important is missing (ShopAdsPlayer)");
                 return false;
             }
-            catch (NullPointerException ex)
-            {
-                end = true;
-            }
             if (!end) {
-                ShopAds.shopads.playerHandler.addPlayer(player);
+                ShopAds.playerHandler.addPlayer(player);
             }
         } while (!end);
         return true;
@@ -346,7 +153,7 @@ public class ShopAdsIO
             FileInputStream fis = new FileInputStream(this.shopsFile);
             in = new ObjectInputStream(fis);
         }
-        catch (IOException localIOException1) {}
+        catch (IOException ignored) {}
         int shopsObjects = getObjectCount(this.shopsFile);
         Shop shop = null;
         boolean end = false;
@@ -356,28 +163,24 @@ public class ShopAdsIO
             {
                 shop = (Shop)in.readObject();
             }
-            catch (IOException ex)
+            catch (IOException | NullPointerException ex)
             {
                 end = true;
             }
             catch (ClassNotFoundException ex)
             {
-                ShopAds.shopads.log.info("Something terribly important is missing (Shop)");
+                ShopAds.log.info("Something terribly important is missing (Shop)");
                 return false;
-            }
-            catch (NullPointerException ex)
-            {
-                end = true;
             }
             if (!end) {
                 try
                 {
-                    ShopAds.shopads.shopHandler.addShop(shop);
+                    ShopAds.shopHandler.addShop(shop);
                 }
                 catch (NullPointerException e)
                 {
                     ShopAdsMessage.console.playersFileReset();
-                    ShopAds.shopads.plugin.onDisable();
+                    ShopAds.plugin.onDisable();
                 }
             }
         } while (!end);
@@ -386,28 +189,23 @@ public class ShopAdsIO
 
     public boolean saveShops()
     {
-        if (ShopAds.shopads.shopHandler.shopsEmpty()) {
+        if (ShopAds.shopHandler.shopsEmpty()) {
             return true;
         }
         ShopAdsMessage.console.debug("savingShops");
 
-        FileOutputStream fos = null;
+        FileOutputStream fos;
         ObjectOutputStream out = null;
         try
         {
             fos = new FileOutputStream(this.shopsFile);
             out = new ObjectOutputStream(fos);
-        }
-        catch (FileNotFoundException ex)
+        } catch (IOException ex)
         {
             Logger.getLogger(ShopAdsIO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        catch (IOException ex)
-        {
-            Logger.getLogger(ShopAdsIO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        ShopAdsMessage.console.debug(ShopAds.shopads.shopHandler.getShop(0).getShopName());
-        for (Shop p : ShopAds.shopads.shopHandler.getShops()) {
+        ShopAdsMessage.console.debug(ShopAds.shopHandler.getShop(0).getShopName());
+        for (Shop p : ShopAds.shopHandler.getShops()) {
             try
             {
                 ShopAdsMessage.console.debug("Saving Shop : " + p.getShopName());
@@ -434,28 +232,16 @@ public class ShopAdsIO
     public int getObjectCount(File file)
     {
         ShopAdsMessage.console.debug("getObjectCount on " + file.getName());
-        if (file == null)
-        {
-            ShopAdsMessage.console.debug(file.getName() + " is empty.");
-            return 0;
-        }
         int count = 0;
 
-        ObjectInputStream in = null;
+        ObjectInputStream in;
         try
         {
             FileInputStream fis = new FileInputStream(file);
             in = new ObjectInputStream(fis);
-        }
-        catch (EOFException ex)
+        } catch (IOException ex)
         {
             ShopAdsMessage.console.debug("Object Count : 0");
-            return 0;
-        }
-        catch (IOException ex)
-        {
-            ShopAdsMessage.console.debug("Object Count : 0");
-
             return 0;
         }
         Object object = null;
@@ -467,11 +253,16 @@ public class ShopAdsIO
                 count++;
             }
         }
-        catch (NullPointerException localNullPointerException) {}catch (IOException localIOException1) {}catch (ClassNotFoundException localClassNotFoundException) {}
+        catch (NullPointerException | IOException | ClassNotFoundException ignored) {}
         return count;
     }
 
-    public void createDefaultConfig()
+    public void createDefaultConfig() {
+        ShopAds.shopads.saveDefaultConfig();
+    }
+
+    @Deprecated
+    public void createDefaultConfig_legacy()
     {
         try
         {
@@ -552,44 +343,38 @@ public class ShopAdsIO
                 out.println("defaultShopColor=Gold");
                 out.println("defaultAdColor=Gray");
                 out.close();
-                ShopAds.shopads.log.info("[ShopAds2] No config found, created default config");
+                ShopAds.log.info("[ShopAds2] No config found, created default config");
             }
             catch (IOException e)
             {
-                ShopAds.shopads.log.info("[ShopAds2] Error writing to config");
+                ShopAds.log.info("[ShopAds2] Error writing to config");
             }
-            return;
         }
         catch (IOException ioe)
         {
-            ShopAds.shopads.log.info("[ShopAds] Error creating config file");
+            ShopAds.log.info("[ShopAds] Error creating config file");
         }
     }
 
     public boolean savePlayers()
     {
-        if (ShopAds.shopads.playerHandler.isEmpty()) {
+        if (ShopAds.playerHandler.isEmpty()) {
             return true;
         }
         ShopAdsMessage.console.debug("saving Players");
 
-        FileOutputStream fos = null;
+        FileOutputStream fos;
         ObjectOutputStream out = null;
         try
         {
             fos = new FileOutputStream(this.playerFile);
             out = new ObjectOutputStream(fos);
-        }
-        catch (FileNotFoundException ex)
+        } catch (IOException ex)
         {
             Logger.getLogger(ShopAdsIO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        catch (IOException ex)
-        {
-            Logger.getLogger(ShopAdsIO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        ShopAdsMessage.console.debug(ShopAds.shopads.playerHandler.getPlayer(0).getName());
-        for (ShopAdsPlayer p : ShopAds.shopads.playerHandler.getPlayers()) {
+        ShopAdsMessage.console.debug(ShopAds.playerHandler.getPlayer(0).getName());
+        for (ShopAdsPlayer p : ShopAds.playerHandler.getPlayers()) {
             try
             {
                 ShopAdsMessage.console.debug("Saving Player : " + p.getName());
@@ -613,83 +398,7 @@ public class ShopAdsIO
         return false;
     }
 
-    public void loadConfigArray()
-    {
-        this.configArray = new ArrayList();
-        FileReader fileReader = null;
-        try
-        {
-            fileReader = new FileReader(this.configFile);
-        }
-        catch (FileNotFoundException ex)
-        {
-            Logger.getLogger(ShopAdsIO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        BufferedReader bufferedReader = new BufferedReader(fileReader);
-
-        String line = null;
-        try
-        {
-            while ((line = bufferedReader.readLine()) != null) {
-                this.configArray.add(line);
-            }
-        }
-        catch (IOException localIOException) {}
-        try
-        {
-            bufferedReader.close();
-        }
-        catch (IOException localIOException1) {}
-    }
-
-    public void saveConfig()
-    {
-        try
-        {
-            FileWriter out = new FileWriter(this.configFile);
-            BufferedWriter write = new BufferedWriter(out);
-            for (String line : this.configArray)
-            {
-                write.write(line);
-                write.newLine();
-            }
-            write.close();
-            out.close();
-        }
-        catch (IOException ex)
-        {
-            Logger.getLogger(ShopAdsIO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    public boolean setConfigOption(String key, String value, Player player)
-    {
-        loadConfigArray();
-        if (getKeyIndex(key) >= 0)
-        {
-            int index = getKeyIndex(key);
-            ShopAdsMessage.setCommand.configOption(key, value, player);
-            this.configArray.set(index, key + "=" + value);
-        }
-        else
-        {
-            this.configArray.add(key + "=" + value);
-        }
-        saveConfig();
-        return true;
-    }
-
-    private int getKeyIndex(String key)
-    {
-        int i = -1;
-        for (String line : this.configArray)
-        {
-            i++;
-            if ((!line.startsWith("#")) &&
-                    (line.startsWith(key + "="))) {
-                return i;
-            }
-        }
-        return i;
+    public void saveConfig() {
+        ShopAds.shopads.saveConfig();
     }
 }
