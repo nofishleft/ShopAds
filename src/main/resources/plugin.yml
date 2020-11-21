@@ -1,8 +1,10 @@
 name: ShopAds
+version: @version@
 main: nz.rishaan.shopads.ShopAds
-version: 0.86
-author: Hpiz
-authors: [blobic123, MelonKing]
+api-version: 1.16
+prefix: ShopAds
+description: Hello
+authors: [GitHub/NoFishLeft, Hpiz]
 depend:
   - Vault
 commands:

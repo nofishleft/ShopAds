@@ -34,14 +34,9 @@ public class ShopAdsCommand
         ShopAdsMessage.console.debug("Command caught");
         if ((sender instanceof Player))
         {
-            if (playerCommand((Player)sender, cmd, commandLabel, args)) {
-                return true;
-            }
+            return playerCommand((Player) sender, cmd, commandLabel, args);
         }
-        else if (consoleCommand(cmd, commandLabel, args)) {
-            return true;
-        }
-        return false;
+        else return consoleCommand(cmd, commandLabel, args);
     }
 
     private boolean consoleCommand(Command cmd, String commandLabel, String[] args)
@@ -70,7 +65,7 @@ public class ShopAdsCommand
                 }
                 if ((args[0].equalsIgnoreCase("stat")) || (args[0].equalsIgnoreCase("stats")))
                 {
-                    if (!ShopAds.shopads.permissions.hasStatsPermission(player))
+                    if (!ShopAds.permissions.hasStatsPermission(player))
                     {
                         ShopAdsMessage.error.noCommandPermission(player, "STATS");
                         return true;
@@ -80,7 +75,7 @@ public class ShopAdsCommand
                 }
                 if ((args[0].equalsIgnoreCase("del")) || (args[0].equalsIgnoreCase("delete")))
                 {
-                    if (!ShopAds.shopads.permissions.hasDeleteOwnPermission(player))
+                    if (!ShopAds.permissions.hasDeleteOwnPermission(player))
                     {
                         ShopAdsMessage.error.noCommandPermission(player, "DELETE");
                         return true;
@@ -90,7 +85,7 @@ public class ShopAdsCommand
                 }
                 if ((args[0].equalsIgnoreCase("c")) || (args[0].equalsIgnoreCase("create")))
                 {
-                    if (!ShopAds.shopads.permissions.hasCreatePermission(player))
+                    if (!ShopAds.permissions.hasCreatePermission(player))
                     {
                         ShopAdsMessage.error.noCommandPermission(player, "CREATE");
                         return true;
@@ -110,7 +105,7 @@ public class ShopAdsCommand
                 }
                 if ((args[0].equalsIgnoreCase("rel")) || (args[0].equalsIgnoreCase("reload")))
                 {
-                    if (!ShopAds.shopads.permissions.hasAdminPermission(player))
+                    if (!ShopAds.permissions.hasAdminPermission(player))
                     {
                         ShopAdsMessage.error.noCommandPermission(player, "RELOAD");
                         return true;
@@ -120,7 +115,7 @@ public class ShopAdsCommand
                 }
                 if (args[0].equalsIgnoreCase("config"))
                 {
-                    if (!ShopAds.shopads.permissions.hasAdminPermission(player))
+                    if (!ShopAds.permissions.hasAdminPermission(player))
                     {
                         ShopAdsMessage.error.noCommandPermission(player, "CONFIG");
                         return true;
@@ -130,7 +125,7 @@ public class ShopAdsCommand
                 }
                 if (args[0].equalsIgnoreCase("disable"))
                 {
-                    if (!ShopAds.shopads.permissions.hasAdminPermission(player))
+                    if (!ShopAds.permissions.hasAdminPermission(player))
                     {
                         ShopAdsMessage.error.noCommandPermission(player, "DISABLE");
                         return true;
@@ -140,7 +135,7 @@ public class ShopAdsCommand
                 }
                 if (args[0].equalsIgnoreCase("set"))
                 {
-                    if (!ShopAds.shopads.permissions.hasSetPermission(player))
+                    if (!ShopAds.permissions.hasSetPermission(player))
                     {
                         ShopAdsMessage.error.noCommandPermission(player, "SET");
                         return true;
@@ -169,15 +164,15 @@ public class ShopAdsCommand
         ShopAdsMessage.console.debug("on command");
         if (args.length == 1)
         {
-            if (!ShopAds.shopads.playerHandler.playerExists(player.getName()))
+            if (!ShopAds.playerHandler.playerExists(player.getName()))
             {
-                ShopAds.shopads.playerHandler.addPlayer(new ShopAdsPlayer(player.getName(), true, 0));
+                ShopAds.playerHandler.addPlayer(new ShopAdsPlayer(player.getName(), true, 0));
                 return;
             }
-            boolean was = ShopAds.shopads.playerHandler.getPlayer(player.getName()).getWantsAds();
-            if (!ShopAds.shopads.config.getSendToAll())
+            boolean was = ShopAds.playerHandler.getPlayer(player.getName()).getWantsAds();
+            if (!ShopAds.config.getSendToAll())
             {
-                ShopAds.shopads.playerHandler.getPlayer(player.getName()).setWantsAds(true);
+                ShopAds.playerHandler.getPlayer(player.getName()).setWantsAds(true);
                 if (was) {
                     ShopAdsMessage.command.wasAlreadyReceivingAds(player);
                 } else {
@@ -202,14 +197,14 @@ public class ShopAdsCommand
         ShopAdsMessage.console.debug("off command");
         if (args.length == 1)
         {
-            if (!ShopAds.shopads.playerHandler.playerExists(player.getName()))
+            if (!ShopAds.playerHandler.playerExists(player.getName()))
             {
-                ShopAds.shopads.playerHandler.addPlayer(new ShopAdsPlayer(player.getName(), false, 0));
+                ShopAds.playerHandler.addPlayer(new ShopAdsPlayer(player.getName(), false, 0));
                 return;
             }
-            if (!ShopAds.shopads.config.getSendToAll())
+            if (!ShopAds.config.getSendToAll())
             {
-                ShopAds.shopads.playerHandler.getPlayer(player.getName()).setWantsAds(false);
+                ShopAds.playerHandler.getPlayer(player.getName()).setWantsAds(false);
                 return;
             }
             ShopAdsMessage.command.sendsToAll(player);
@@ -242,16 +237,16 @@ public class ShopAdsCommand
         if (args.length == 2)
         {
             String shopToDelete = args[1];
-            if (ShopAds.shopads.shopHandler.shopExists(shopToDelete))
+            if (ShopAds.shopHandler.shopExists(shopToDelete))
             {
-                Shop deleteMe = ShopAds.shopads.shopHandler.getShop(shopToDelete);
-                if ((ShopAds.shopads.shopHandler.ownsShop(deleteMe, player)) || (ShopAds.shopads.permissions.hasAdminDeletePermission(player)))
+                Shop deleteMe = ShopAds.shopHandler.getShop(shopToDelete);
+                if ((ShopAds.shopHandler.ownsShop(deleteMe, player)) || (ShopAds.permissions.hasAdminDeletePermission(player)))
                 {
-                    ShopAds.shopads.shopHandler.removeShop(deleteMe);
+                    ShopAds.shopHandler.removeShop(deleteMe);
                     ShopAdsMessage.command.shopDeleted(player, deleteMe);
-                    ShopAds.shopads.iO.saveShops();
-                    ShopAds.shopads.iO.loadShops();
-                    ShopAds.shopads.playerHandler.getPlayer(deleteMe.getShopOwner()).subtractOwnedShop();
+                    ShopAds.iO.saveShops();
+                    ShopAds.iO.loadShops();
+                    ShopAds.playerHandler.getPlayer(deleteMe.getShopOwner()).subtractOwnedShop();
                 }
             }
             else
@@ -275,13 +270,13 @@ public class ShopAdsCommand
             ShopAdsMessage.console.debug("Character at args[2] = " + args[2].charAt(0));
             if (Character.isLetter(args[2].charAt(0)))
             {
-                if (ShopAds.shopads.permissions.hasAdminPermission(player)) {
+                if (ShopAds.permissions.hasAdminPermission(player)) {
                     createShopUnlimited(player, args);
                 }
             }
             else if (Character.isDigit(args[2].charAt(0)))
             {
-                if ((ShopAds.shopads.playerHandler.getPlayer(player.getName()).getOwnedShops() < ShopAds.shopads.config.getShopsPerPlayer()) || (ShopAds.shopads.permissions.hasAdminPermission(player))) {
+                if ((ShopAds.playerHandler.getPlayer(player.getName()).getOwnedShops() < ShopAds.config.getShopsPerPlayer()) || (ShopAds.permissions.hasAdminPermission(player))) {
                     createShopWithTime(player, args);
                 }
                 return;
@@ -316,7 +311,7 @@ public class ShopAdsCommand
         {
             if (args[1].equalsIgnoreCase("save"))
             {
-                ShopAds.shopads.iO.saveConfig();
+                ShopAds.iO.saveConfig();
                 ShopAdsMessage.command.configSaved(player);
             }
             noValue(player, args);
@@ -354,11 +349,11 @@ public class ShopAdsCommand
             ShopAdsMessage.commandUsage.setCommand(player);
             return;
         }
-        if (ShopAds.shopads.shopHandler.shopExists(args[1]))
+        if (ShopAds.shopHandler.shopExists(args[1]))
         {
-            Shop shop = ShopAds.shopads.shopHandler.getShop(args[1]);
+            Shop shop = ShopAds.shopHandler.getShop(args[1]);
             if ((!shop.getShopOwner().equalsIgnoreCase(player.getName())) &&
-                    (!ShopAds.shopads.permissions.hasSetOtherPermission(player)))
+                    (!ShopAds.permissions.hasSetOtherPermission(player)))
             {
                 ShopAdsMessage.error.notYourShop(player, shop);
                 return;
@@ -369,7 +364,7 @@ public class ShopAdsCommand
                 ShopAdsMessage.setCommand.displayShopSettings(player, shop);
                 return;
             }
-            ArrayList<String> values = new ArrayList();
+            ArrayList<String> values = new ArrayList<String>();
             if (args.length >= 4) {
                 for (int i = 0; i < args.length - 3; i++) {
                     values.add(args[(i + 3)]);
@@ -384,16 +379,16 @@ public class ShopAdsCommand
     private void createShopWithTime(Player player, String[] args)
     {
         ShopAdsMessage.console.debug("createShopWithTime started");
-        if (ShopAds.shopads.shopHandler.shopExists(args[1]))
+        if (ShopAds.shopHandler.shopExists(args[1]))
         {
             ShopAdsMessage.command.shopNameTaken(player);
             return;
         }
-        if (Integer.parseInt(args[2]) <= ShopAds.shopads.config.getMaxAdRunTime())
+        if (Integer.parseInt(args[2]) <= ShopAds.config.getMaxAdRunTime())
         {
-            if (!ShopAds.shopads.economy.hasEnough(player, Double.parseDouble(args[2]) * ShopAds.shopads.config.getAdCost()))
+            if (!ShopAds.economy.hasEnough(player, Double.parseDouble(args[2]) * ShopAds.config.getAdCost()))
             {
-                ShopAdsMessage.error.insufficientFunds(player, Double.parseDouble(args[2]) * ShopAds.shopads.config.getAdCost());
+                ShopAdsMessage.error.insufficientFunds(player, Double.parseDouble(args[2]) * ShopAds.config.getAdCost());
                 return;
             }
             String[] worlds = new String[1];
@@ -411,8 +406,8 @@ public class ShopAdsCommand
                 }
             }
             Shop newShop = new Shop(args[1], player.getLocation(), player.getName(), timeToEnd, false, player.getWorld(), ad.toString(), worlds, true);
-            ShopAds.shopads.shopHandler.addShop(newShop);
-            ShopAds.shopads.economy.chargePlayer(player, Double.parseDouble(args[2]) * ShopAds.shopads.config.getAdCost());
+            ShopAds.shopHandler.addShop(newShop);
+            ShopAds.economy.chargePlayer(player, Double.parseDouble(args[2]) * ShopAds.config.getAdCost());
             ShopAdsMessage.command.shopCreated(player, newShop);
         }
         else
@@ -434,7 +429,7 @@ public class ShopAdsCommand
             }
         }
         Shop newShop = new Shop(args[1], player.getLocation(), player.getName(), null, true, player.getWorld(), ad.toString(), worlds, true);
-        ShopAds.shopads.shopHandler.addShop(newShop);
+        ShopAds.shopHandler.addShop(newShop);
         ShopAdsMessage.command.shopCreated(player, newShop);
     }
 
@@ -478,8 +473,8 @@ public class ShopAdsCommand
         {
             if (Character.isDigit(value.charAt(0)))
             {
-                ShopAds.shopads.iO.setConfigOption("announceInterval", value, player);
-                ShopAds.shopads.config.setAnnounceInterval(Integer.parseInt(value));
+                ShopAds.iO.setConfigOption("announceInterval", value, player);
+                ShopAds.config.setAnnounceInterval(Integer.parseInt(value));
             }
             else
             {
@@ -492,8 +487,8 @@ public class ShopAdsCommand
         {
             if ((value.equalsIgnoreCase("true")) || (value.equalsIgnoreCase("false")))
             {
-                ShopAds.shopads.iO.setConfigOption("sendToAll", value, player);
-                ShopAds.shopads.config.setSendToAll(Boolean.parseBoolean(value));
+                ShopAds.iO.setConfigOption("sendToAll", value, player);
+                ShopAds.config.setSendToAll(Boolean.parseBoolean(value));
             }
             else
             {
@@ -506,8 +501,8 @@ public class ShopAdsCommand
         {
             if ((value.equalsIgnoreCase("true")) || (value.equalsIgnoreCase("false")))
             {
-                ShopAds.shopads.iO.setConfigOption("enableTp", value, player);
-                ShopAds.shopads.config.setEnableTp(Boolean.parseBoolean(value));
+                ShopAds.iO.setConfigOption("enableTp", value, player);
+                ShopAds.config.setEnableTp(Boolean.parseBoolean(value));
             }
             else
             {
@@ -520,8 +515,8 @@ public class ShopAdsCommand
         {
             if ((value.equalsIgnoreCase("true")) || (value.equalsIgnoreCase("false")))
             {
-                ShopAds.shopads.iO.setConfigOption("randomOrder", value, player);
-                ShopAds.shopads.config.setRandomOrder(Boolean.parseBoolean(value));
+                ShopAds.iO.setConfigOption("randomOrder", value, player);
+                ShopAds.config.setRandomOrder(Boolean.parseBoolean(value));
             }
             else
             {
@@ -534,8 +529,8 @@ public class ShopAdsCommand
         {
             if (Character.isDigit(value.charAt(0)))
             {
-                ShopAds.shopads.iO.setConfigOption("tpCost", value, player);
-                ShopAds.shopads.config.setTpCost(Double.parseDouble(value));
+                ShopAds.iO.setConfigOption("tpCost", value, player);
+                ShopAds.config.setTpCost(Double.parseDouble(value));
             }
             else
             {
@@ -548,8 +543,8 @@ public class ShopAdsCommand
         {
             if (Character.isDigit(value.charAt(0)))
             {
-                ShopAds.shopads.iO.setConfigOption("transWorldAddition", value, player);
-                ShopAds.shopads.config.setTransWorldAddition(Double.parseDouble(value));
+                ShopAds.iO.setConfigOption("transWorldAddition", value, player);
+                ShopAds.config.setTransWorldAddition(Double.parseDouble(value));
             }
             else
             {
@@ -562,8 +557,8 @@ public class ShopAdsCommand
         {
             if (Character.isDigit(value.charAt(0)))
             {
-                ShopAds.shopads.iO.setConfigOption("maxAdRunTime", value, player);
-                ShopAds.shopads.config.setMaxAdRunTime(Integer.parseInt(value));
+                ShopAds.iO.setConfigOption("maxAdRunTime", value, player);
+                ShopAds.config.setMaxAdRunTime(Integer.parseInt(value));
             }
             else
             {
@@ -576,8 +571,8 @@ public class ShopAdsCommand
         {
             if (Character.isDigit(value.charAt(0)))
             {
-                ShopAds.shopads.iO.setConfigOption("shopsPerPlayer", value, player);
-                ShopAds.shopads.config.setShopsPerPlayer(Integer.parseInt(value));
+                ShopAds.iO.setConfigOption("shopsPerPlayer", value, player);
+                ShopAds.config.setShopsPerPlayer(Integer.parseInt(value));
             }
             else
             {
@@ -590,8 +585,8 @@ public class ShopAdsCommand
         {
             if (Character.isDigit(value.charAt(0)))
             {
-                ShopAds.shopads.iO.setConfigOption("adCost", value, player);
-                ShopAds.shopads.config.setAdCost(Double.parseDouble(value));
+                ShopAds.iO.setConfigOption("adCost", value, player);
+                ShopAds.config.setAdCost(Double.parseDouble(value));
             }
             else
             {
@@ -604,13 +599,13 @@ public class ShopAdsCommand
         {
             if ((value.equalsIgnoreCase("player")) || (value.equalsIgnoreCase("shop")) || (value.equalsIgnoreCase("owner")))
             {
-                ShopAds.shopads.iO.setConfigOption("tpCostDestination", "shop", player);
-                ShopAds.shopads.config.setTpCostDestination("shop");
+                ShopAds.iO.setConfigOption("tpCostDestination", "shop", player);
+                ShopAds.config.setTpCostDestination("shop");
             }
             else if ((value.equalsIgnoreCase("server")) || (value.equalsIgnoreCase("nobody")) || (value.equalsIgnoreCase("consume")))
             {
-                ShopAds.shopads.iO.setConfigOption("tpCostDestination", "server", player);
-                ShopAds.shopads.config.setTpCostDestination("server");
+                ShopAds.iO.setConfigOption("tpCostDestination", "server", player);
+                ShopAds.config.setTpCostDestination("server");
             }
             else
             {
@@ -623,8 +618,8 @@ public class ShopAdsCommand
         {
             if (Character.isDigit(value.charAt(0)))
             {
-                ShopAds.shopads.iO.setConfigOption("announceRadius", value, player);
-                ShopAds.shopads.config.setAnnounceRadius(Integer.parseInt(value));
+                ShopAds.iO.setConfigOption("announceRadius", value, player);
+                ShopAds.config.setAnnounceRadius(Integer.parseInt(value));
             }
             else
             {
@@ -656,20 +651,20 @@ public class ShopAdsCommand
 
     private void teleportToShop(Player player, String shop)
     {
-        if (ShopAds.shopads.shopHandler.shopExists(shop))
+        if (ShopAds.shopHandler.shopExists(shop))
         {
-            Shop tpShop = ShopAds.shopads.shopHandler.getShop(shop);
-            if (ShopAds.shopads.economy.hasEnough(player, ShopAds.shopads.economy.getTpCharge(player, player.getLocation(), tpShop.getLocation().getLocation())))
+            Shop tpShop = ShopAds.shopHandler.getShop(shop);
+            if (ShopAds.economy.hasEnough(player, ShopAds.economy.getTpCharge(player, player.getLocation(), tpShop.getLocation().getLocation())))
             {
                 if (!tpShop.getShopOwner().equalsIgnoreCase(player.getName()))
                 {
-                    ShopAds.shopads.economy.chargePlayer(player, ShopAds.shopads.economy.getTpCharge(player, player.getLocation(), tpShop.getLocation().getLocation()));
-                    ShopAds.shopads.shopHandler.getShop(shop).addMoneyEarned(ShopAds.shopads.economy.getTpCharge(player, player.getLocation(), tpShop.getLocation().getLocation()));
+                    ShopAds.economy.chargePlayer(player, ShopAds.economy.getTpCharge(player, player.getLocation(), tpShop.getLocation().getLocation()));
+                    ShopAds.shopHandler.getShop(shop).addMoneyEarned(ShopAds.economy.getTpCharge(player, player.getLocation(), tpShop.getLocation().getLocation()));
                     try
                     {
-                        if ((ShopAds.shopads.config.getTpCostDestination().equals("shop")) &&
+                        if ((ShopAds.config.getTpCostDestination().equals("shop")) &&
                                 (!tpShop.runsForever())) {
-                            ShopAds.shopads.economy.payPlayer(tpShop.getShopOwner(), ShopAds.shopads.economy.getTpCharge(player, player.getLocation(), tpShop.getLocation().getLocation()));
+                            ShopAds.economy.payPlayer(tpShop.getShopOwner(), ShopAds.economy.getTpCharge(player, player.getLocation(), tpShop.getLocation().getLocation()));
                         }
                     }
                     catch (NullPointerException e)
@@ -677,24 +672,22 @@ public class ShopAdsCommand
                         ShopAdsMessage.console.debug("There was an error with config.getTpCostDestination().equals('shop') " + e.getLocalizedMessage());
                     }
                 }
-                if (ShopAds.shopads.config.getTpTimeout() > 0) {
-                    ShopAds.shopads.playerHandler.playerTeleported(player);
+                if (ShopAds.config.getTpTimeout() > 0) {
+                    ShopAds.playerHandler.playerTeleported(player);
                 }
                 player.teleport(tpShop.getLocation().getLocation());
-                Player[] arrayOfPlayer;
-                int j = (arrayOfPlayer = (Player[]) ShopAds.shopads.server.getOnlinePlayers().toArray()).length;
-                for (int i = 0; i < j; i++)
+
+                for (Player p : ShopAds.server.getOnlinePlayers())
                 {
-                    Player p = arrayOfPlayer[i];
                     if (p.getName().equalsIgnoreCase(tpShop.getShopOwner())) {
-                        ShopAds.shopads.message.playerTeleportedToYourShop(p, player, tpShop);
+                        ShopAds.message.playerTeleportedToYourShop(p, player, tpShop);
                     }
                 }
-                ShopAds.shopads.shopHandler.getShop(shop).shopTeleportedTo();
+                ShopAds.shopHandler.getShop(shop).shopTeleportedTo();
             }
             else
             {
-                ShopAdsMessage.error.insufficientFunds(player, ShopAds.shopads.economy.getTpCharge(player, player.getLocation(), tpShop.getLocation().getLocation()));
+                ShopAdsMessage.error.insufficientFunds(player, ShopAds.economy.getTpCharge(player, player.getLocation(), tpShop.getLocation().getLocation()));
             }
         }
         else
