@@ -1,38 +1,33 @@
 package nz.rishaan.shopads.Player;
 
+import nz.rishaan.shopads.Shop.Shop;
+import nz.rishaan.shopads.ShopAds;
+import nz.rishaan.shopads.Util.Messaging.ShopAdsMessage;
+import org.bukkit.Warning;
+import org.bukkit.entity.Player;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import org.bukkit.entity.Player;
-import nz.rishaan.shopads.Shop.Shop;
-import nz.rishaan.shopads.Shop.ShopHandler;
-import nz.rishaan.shopads.ShopAds;
-import nz.rishaan.shopads.Util.Messaging.ConsoleMessage;
-import nz.rishaan.shopads.Util.Messaging.ShopAdsMessage;
-import nz.rishaan.shopads.Util.ShopAdsConfig;
 
-public class PlayerHandler
-{
-    public ArrayList<ShopAdsPlayer> players = new ArrayList();
+public class PlayerHandler {
+    public ArrayList<ShopAdsPlayer> players = new ArrayList<>();
     public ArrayList<TeleportedPlayer> teleportedPlayers;
 
-    public void initializeTeleportedPlayers()
-    {
-        this.teleportedPlayers = new ArrayList();
+    public void initializeTeleportedPlayers() {
+        this.teleportedPlayers = new ArrayList<>();
     }
 
-    public ArrayList<ShopAdsPlayer> getPlayers()
-    {
+    public ArrayList<ShopAdsPlayer> getPlayers() {
         return this.players;
     }
 
-    public void setPlayers(ArrayList<ShopAdsPlayer> newPlayers)
-    {
+    public void setPlayers(ArrayList<ShopAdsPlayer> newPlayers) {
         this.players = newPlayers;
     }
 
-    public ShopAdsPlayer getPlayer(String name)
-    {
+    @Warning(reason = "Uses username instead of uuid")
+    public ShopAdsPlayer getPlayer(String name) {
         for (ShopAdsPlayer test : this.players) {
             if (test.getName().equalsIgnoreCase(name)) {
                 return test;
@@ -41,27 +36,20 @@ public class PlayerHandler
         return null;
     }
 
-    public boolean playerExists(String name)
-    {
-        try
-        {
+    @Warning(reason = "Uses username instead of uuid")
+    public boolean playerExists(String name) {
+        try {
             ShopAdsPlayer p = getPlayer(name);
-            if (this.players.contains(p)) {
-                return true;
-            }
-            return false;
+            return this.players.contains(p);
+        } catch (NullPointerException ignored) {
         }
-        catch (NullPointerException localNullPointerException) {}
         return false;
     }
 
-    public boolean addPlayer(ShopAdsPlayer player)
-    {
-        if (!this.players.isEmpty())
-        {
+    public boolean addPlayer(ShopAdsPlayer player) {
+        if (!this.players.isEmpty()) {
             ShopAdsMessage.console.debug("players is not empty when adding player");
-            if (playerExists(player.getName()))
-            {
+            if (playerExists(player.getName())) {
                 ShopAdsMessage.console.debug(player.getName() + " was not added to players.");
                 return false;
             }
@@ -75,19 +63,16 @@ public class PlayerHandler
         return true;
     }
 
-    public boolean removeTeleportedPlayer(TeleportedPlayer p)
-    {
-        try
-        {
+    public boolean removeTeleportedPlayer(TeleportedPlayer p) {
+        try {
             this.teleportedPlayers.remove(p);
             return true;
+        } catch (Exception ignored) {
         }
-        catch (Exception localException) {}
         return false;
     }
 
-    public boolean returnTeleportedPlayers()
-    {
+    public boolean returnTeleportedPlayers() {
         if (this.teleportedPlayers == null) {
             return true;
         }
@@ -96,36 +81,26 @@ public class PlayerHandler
         }
         for (TeleportedPlayer p : this.teleportedPlayers) {
             if ((p.isExpired()) &&
-                    (removeTeleportedPlayer(p)))
-            {
+                    (removeTeleportedPlayer(p))) {
                 p.getPlayer().teleport(p.getOldLoc());
-                ShopAds.shopads.message.tpTimeout(p.getPlayer());
+                ShopAds.message.tpTimeout(p.getPlayer());
                 return true;
             }
         }
         return false;
     }
 
-    public boolean isEmpty()
-    {
-        if (this.players.isEmpty()) {
-            return true;
-        }
-        return false;
+    public boolean isEmpty() {
+        return this.players.isEmpty();
     }
 
-    public void updateOwnedShopsFromFile()
-    {
-        for (ShopAdsPlayer p : getPlayers())
-        {
+    public void updateOwnedShopsFromFile() {
+        for (ShopAdsPlayer p : getPlayers()) {
             int count = 0;
-            if (ShopAds.shopads.shopHandler.shopsEmpty())
-            {
+            if (ShopAds.shopHandler.shopsEmpty()) {
                 p.setOwnedShops(count);
-            }
-            else
-            {
-                for (Shop s : ShopAds.shopads.shopHandler.getShops()) {
+            } else {
+                for (Shop s : ShopAds.shopHandler.getShops()) {
                     if (s.getShopOwner().equalsIgnoreCase(p.getName())) {
                         count++;
                     }
@@ -135,45 +110,35 @@ public class PlayerHandler
         }
     }
 
-    public boolean isNull()
-    {
-        if (this.players == null) {
-            return true;
-        }
-        return false;
+    public boolean isNull() {
+        return this.players == null;
     }
 
-    public ShopAdsPlayer getPlayer(int i)
-    {
-        return (ShopAdsPlayer)this.players.get(i);
+    public ShopAdsPlayer getPlayer(int i) {
+        return this.players.get(i);
     }
 
-    public void playerTeleported(Player player)
-    {
+    public void playerTeleported(Player player) {
         Calendar calNow = Calendar.getInstance();
         Date dateNow = calNow.getTime();
         Date endTime = calNow.getTime();
-        endTime.setTime(dateNow.getTime() + ShopAds.shopads.config.getTpTimeout() * 1000);
-        if (ShopAds.shopads.config.getTpTimeout() > 0)
-        {
+        endTime.setTime(dateNow.getTime() + ShopAds.config.getTpTimeout() * 1000);
+        if (ShopAds.config.getTpTimeout() > 0) {
             if (this.teleportedPlayers == null) {
                 initializeTeleportedPlayers();
             }
-            if (!teleportedPlayersContains(player.getName()))
-            {
+            if (!teleportedPlayersContains(player.getName())) {
                 this.teleportedPlayers.add(new TeleportedPlayer(player, endTime));
-                ShopAds.shopads.message.playerTeleported(player);
-            }
-            else
-            {
+                ShopAds.message.playerTeleported(player);
+            } else {
                 addTeleportTime(getTeleportedPlayer(player));
-                ShopAds.shopads.message.playerTeleportExtended(getTeleportedPlayer(player));
+                ShopAds.message.playerTeleportExtended(getTeleportedPlayer(player));
             }
         }
     }
 
-    public boolean teleportedPlayersContains(String name)
-    {
+    @Warning(reason = "Uses username instead of uuid")
+    public boolean teleportedPlayersContains(String name) {
         if (this.teleportedPlayers == null) {
             return false;
         }
@@ -188,8 +153,7 @@ public class PlayerHandler
         return false;
     }
 
-    private TeleportedPlayer getTeleportedPlayer(Player player)
-    {
+    private TeleportedPlayer getTeleportedPlayer(Player player) {
         for (TeleportedPlayer p : this.teleportedPlayers) {
             if (p.getPlayer().getName().equalsIgnoreCase(player.getName())) {
                 return p;
@@ -198,10 +162,9 @@ public class PlayerHandler
         return null;
     }
 
-    private void addTeleportTime(TeleportedPlayer teleportedPlayer)
-    {
+    private void addTeleportTime(TeleportedPlayer teleportedPlayer) {
         Date endTime = teleportedPlayer.getTpExpire();
-        endTime.setTime(endTime.getTime() + ShopAds.shopads.config.getTpTimeout() * 1000);
-        ((TeleportedPlayer)this.teleportedPlayers.get(this.teleportedPlayers.indexOf(teleportedPlayer))).setTpExpire(endTime);
+        endTime.setTime(endTime.getTime() + ShopAds.config.getTpTimeout() * 1000);
+        this.teleportedPlayers.get(this.teleportedPlayers.indexOf(teleportedPlayer)).setTpExpire(endTime);
     }
 }
