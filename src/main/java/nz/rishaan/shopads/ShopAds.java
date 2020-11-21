@@ -29,7 +29,6 @@ public class ShopAds
         extends JavaPlugin {
     protected AnnounceThread thread;
     protected OneSecondThread thread2;
-    public static Plugin plugin;
     private final ShopAdsPlayerListener playerListener = new ShopAdsPlayerListener(this);
     public static final Logger log = Logger.getLogger("Minecraft");
     public static final ShopAdsConfig config = new ShopAdsConfig();
@@ -48,7 +47,7 @@ public class ShopAds
     public static ShopAds shopads;
 
     public ShopAds() {
-        plugin = this;
+        shopads = this;
         this.thread = new AnnounceThread(this);
         this.thread2 = new OneSecondThread(this);
     }
@@ -57,7 +56,7 @@ public class ShopAds
         ShopAdsMessage.plugin = this;
 
         server = getServer();
-        plugin = server.getPluginManager().getPlugin("ShopAds");
+        //shopads = server.getPluginManager().getPlugin("ShopAds");
 
         PluginDescriptionFile pdfFile = getDescription();
         log.info("[" + pdfFile.getName() + "]" + " Version " + pdfFile.getVersion() + " loading.");
@@ -80,7 +79,8 @@ public class ShopAds
         iO.savePlayers();
         ShopAdsMessage.console.savingShops();
         iO.saveShops();
-        scheduler.cancelTasks(plugin);
+        scheduler.cancelTasks(this);
+        playerHandler.forceReturnTeleportedPlayers();
     }
 
     public void reload() {
@@ -97,8 +97,8 @@ public class ShopAds
         prefix = config.getLabelColor() + "[ShopAds] " + config.getMessageColor();
         long interval = Long.parseLong(String.valueOf(config.getAnnounceInterval())) * 20L;
         long oneSecond = 20L;
-        scheduler.scheduleSyncRepeatingTask(plugin, this.thread2, oneSecond, oneSecond);
-        scheduler.scheduleSyncRepeatingTask(plugin, this.thread, interval, interval);
+        scheduler.scheduleSyncRepeatingTask(this, this.thread2, oneSecond, oneSecond);
+        scheduler.scheduleSyncRepeatingTask(this, this.thread, interval, interval);
     }
 
     public boolean playersOnline() {

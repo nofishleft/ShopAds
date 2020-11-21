@@ -27,6 +27,10 @@ public class ShopAdsPlayer
         this.ownedShops = ownedShops;
     }
 
+    public UUID getUUID() {
+        return this.id;
+    }
+
     public String getName() {
         return this.name;
     }

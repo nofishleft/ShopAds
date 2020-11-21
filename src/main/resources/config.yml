@@ -39,34 +39,34 @@
 #      White
 
 #Shop settings
-shopsPerPlayer=1
-adCost=20
-maxAdRunTime=24
+shopsPerPlayer: 1
+adCost: 20
+maxAdRunTime: 24
 
 #Announcement settings
-announceRadius=0
-announceInterval=240
-sendToAll=true
-randomOrder=false
-adsOverWorlds=true
+announceRadius: 0
+announceInterval: 240
+sendToAll: true
+randomOrder: false
+adsOverWorlds: true
 
 #Teleport settings
-enableTp=true
-tpTimeout=60
+enableTp: true
+tpTimeout: 60
 
 #Economy settings
-tpCost=0
-transWorldAddition=0
-tpCostDestination=shop
-setLocationCost=0
-setWorldCost=0
-setShopColorCost=0
-setAdColorCost=0
-setNameCost=0
-setAdCost=0
+tpCost: 0
+transWorldAddition: 0
+tpCostDestination: shop
+setLocationCost: 0
+setWorldCost: 0
+setShopColorCost: 0
+setAdColorCost: 0
+setNameCost: 0
+setAdCost: 0
 
 #Coloring
-labelColor=Gold
-messageColor=Gray
-defaultShopColor=Gold
-defaultAdColor=Gray
+labelColor: Gold
+messageColor: Gray
+defaultShopColor: Gold
+defaultAdColor: Gray

@@ -158,7 +158,7 @@ public class ShopAdsIO {
                     ShopAds.shopHandler.addShop(shop);
                 } catch (NullPointerException e) {
                     ShopAdsMessage.console.playersFileReset();
-                    ShopAds.plugin.onDisable();
+                    ShopAds.shopads.onDisable();
                 }
             }
         } while (!end);
