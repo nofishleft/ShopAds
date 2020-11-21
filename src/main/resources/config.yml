@@ -1,0 +1,72 @@
+#'shopsPerPlayer' - The maximum number of ads allowed to each player
+#'announceInterval' - The time in seconds between ad announcements [number(secs)]
+#'randomOrder' - Should the ads be in a random order [true/false]
+#'adCost' - The cost per hour of advertising [number(currency)]
+#'maxAdRunTime' - The longest time you want an ad to run for [number(hours)]
+#'sendToAll' - Whether to send to all players, disregarding their choice [true/false]
+#'tpCost' - Price to charge the player to teleport (0 for free)[number(currency)]
+#'tpCostDestination' - The destination of the money that is collected from tp [shop/server]
+#'transWorldAddition' - How much more to charge when tp to a shop in a different world (0 to disable)([number(currency)]
+#'announceRadius' - The distance in blocks that an advertisement will be heard (0 for unlimited)[number(blocks)]
+#'adsOverWorlds' - Controls whether ads are broadcasted over to other worlds [true/false]
+#'enableTp' - Allows or denies the tp of players to ad locations [true/false]
+#'tpTimeout' - The time in seconds until returning player to previous location (0 to disable)[number(seconds)]
+#'labelColor' - The color of both the label of ShopAds messages and shop messages. [color]
+#'messageColor' - The color of both the ShopAds messages and shop messages. [color]
+#'setLocationCost' - The cost to change the location of a shop [number(currency)]
+#'setWorldCost' - The cost to add a world to advertise a shop in [number(currency)]
+#'setShopColorCost' - The cost to change the display color of the shop label [number(currency)]
+#'setAdColorCost' - The cost to change the color of the ad [number(currency)]
+#'setNameCost' - The cost to change a shops name [number(currency)]
+#'setAdCost' - The cost to change an ad message of a shop [number(currency)]
+
+#Color:
+#      Black
+#      Dark Blue
+#      Dark Green
+#      Teal
+#      Dark Red
+#      Purple
+#      Gold
+#      Gray
+#      Dark Gray
+#      Blue
+#      Bright Green
+#      Aqua
+#      Red
+#      Light Purple
+#      Yellow
+#      White
+
+#Shop settings
+shopsPerPlayer=1
+adCost=20
+maxAdRunTime=24
+
+#Announcement settings
+announceRadius=0
+announceInterval=240
+sendToAll=true
+randomOrder=false
+adsOverWorlds=true
+
+#Teleport settings
+enableTp=true
+tpTimeout=60
+
+#Economy settings
+tpCost=0
+transWorldAddition=0
+tpCostDestination=shop
+setLocationCost=0
+setWorldCost=0
+setShopColorCost=0
+setAdColorCost=0
+setNameCost=0
+setAdCost=0
+
+#Coloring
+labelColor=Gold
+messageColor=Gray
+defaultShopColor=Gold
+defaultAdColor=Gray
