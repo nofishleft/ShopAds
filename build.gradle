@@ -1,5 +1,9 @@
 import org.apache.tools.ant.filters.ReplaceTokens
 
+plugins {
+    id 'nebula.lint' version '16.15.9'
+}
+
 apply plugin: 'java'
 
 group = 'nz.rishaan'
@@ -9,7 +13,9 @@ sourceCompatibility = '1.8'
 targetCompatibility = '1.8'
 
 repositories {
-    mavenCentral()
+    //mavenCentral()
+    jcenter()
+
     maven {
         name = 'spigotmc-repo'
         url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'

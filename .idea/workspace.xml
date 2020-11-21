@@ -51,12 +51,13 @@
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="shopads" type="f1a62948:ProjectNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="other" type="c8890929:TasksNode$1" />
+                <item name="lint" type="c8890929:TasksNode$1" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="shopads" type="f1a62948:ProjectNode" />
-                <item name="Run Configurations" type="7b0102dc:RunConfigurationsNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="other" type="c8890929:TasksNode$1" />
               </path>
             </expand>
             <select />
@@ -86,7 +87,7 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Gradle.ShopAds-Java [lintGradle]">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -97,6 +98,25 @@
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
+    </configuration>
+    <configuration name="ShopAds-Java [lintGradle]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="lintGradle" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <method v="2" />
     </configuration>
     <configuration name="Debug Spigot" type="JarApplication">
       <option name="JAR_PATH" value="$PROJECT_DIR$/server/spigot.jar" />
@@ -110,6 +130,15 @@
         </option>
       </method>
     </configuration>
+    <list>
+      <item itemvalue="JAR Application.Debug Spigot" />
+      <item itemvalue="Gradle.ShopAds-Java [lintGradle]" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.ShopAds-Java [lintGradle]" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -119,7 +148,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1605922259343</updated>
-      <workItem from="1605922260720" duration="3398000" />
+      <workItem from="1605922260720" duration="3959000" />
     </task>
     <servers />
   </component>
@@ -143,38 +172,38 @@
       <screen x="0" y="0" width="3440" height="1440" />
     </state>
     <state x="1505" y="420" key="FileChooserDialogImpl/0.0.3440.1440/-1050.0.1050.1680@0.0.3440.1440" timestamp="1605924141600" />
-    <state width="3397" height="507" key="GridCell.Tab.0.bottom" timestamp="1605925127652">
+    <state width="3397" height="412" key="GridCell.Tab.0.bottom" timestamp="1605926199588">
       <screen x="0" y="0" width="3440" height="1440" />
     </state>
-    <state width="3397" height="507" key="GridCell.Tab.0.bottom/0.0.3440.1440/-1050.0.1050.1680@0.0.3440.1440" timestamp="1605925127652" />
-    <state width="3397" height="507" key="GridCell.Tab.0.center" timestamp="1605925127651">
+    <state width="3397" height="412" key="GridCell.Tab.0.bottom/0.0.3440.1440/-1050.0.1050.1680@0.0.3440.1440" timestamp="1605926199588" />
+    <state width="3397" height="412" key="GridCell.Tab.0.center" timestamp="1605926199588">
       <screen x="0" y="0" width="3440" height="1440" />
     </state>
-    <state width="3397" height="507" key="GridCell.Tab.0.center/0.0.3440.1440/-1050.0.1050.1680@0.0.3440.1440" timestamp="1605925127651" />
-    <state width="3397" height="507" key="GridCell.Tab.0.left" timestamp="1605925127651">
+    <state width="3397" height="412" key="GridCell.Tab.0.center/0.0.3440.1440/-1050.0.1050.1680@0.0.3440.1440" timestamp="1605926199588" />
+    <state width="3397" height="412" key="GridCell.Tab.0.left" timestamp="1605926199588">
       <screen x="0" y="0" width="3440" height="1440" />
     </state>
-    <state width="3397" height="507" key="GridCell.Tab.0.left/0.0.3440.1440/-1050.0.1050.1680@0.0.3440.1440" timestamp="1605925127651" />
-    <state width="3397" height="507" key="GridCell.Tab.0.right" timestamp="1605925127652">
+    <state width="3397" height="412" key="GridCell.Tab.0.left/0.0.3440.1440/-1050.0.1050.1680@0.0.3440.1440" timestamp="1605926199588" />
+    <state width="3397" height="412" key="GridCell.Tab.0.right" timestamp="1605926199588">
       <screen x="0" y="0" width="3440" height="1440" />
     </state>
-    <state width="3397" height="507" key="GridCell.Tab.0.right/0.0.3440.1440/-1050.0.1050.1680@0.0.3440.1440" timestamp="1605925127652" />
-    <state width="3397" height="507" key="GridCell.Tab.1.bottom" timestamp="1605925127361">
+    <state width="3397" height="412" key="GridCell.Tab.0.right/0.0.3440.1440/-1050.0.1050.1680@0.0.3440.1440" timestamp="1605926199588" />
+    <state width="3397" height="507" key="GridCell.Tab.1.bottom" timestamp="1605925810190">
       <screen x="0" y="0" width="3440" height="1440" />
     </state>
-    <state width="3397" height="507" key="GridCell.Tab.1.bottom/0.0.3440.1440/-1050.0.1050.1680@0.0.3440.1440" timestamp="1605925127361" />
-    <state width="3397" height="507" key="GridCell.Tab.1.center" timestamp="1605925127360">
+    <state width="3397" height="507" key="GridCell.Tab.1.bottom/0.0.3440.1440/-1050.0.1050.1680@0.0.3440.1440" timestamp="1605925810190" />
+    <state width="3397" height="507" key="GridCell.Tab.1.center" timestamp="1605925810190">
       <screen x="0" y="0" width="3440" height="1440" />
     </state>
-    <state width="3397" height="507" key="GridCell.Tab.1.center/0.0.3440.1440/-1050.0.1050.1680@0.0.3440.1440" timestamp="1605925127360" />
-    <state width="3397" height="507" key="GridCell.Tab.1.left" timestamp="1605925127360">
+    <state width="3397" height="507" key="GridCell.Tab.1.center/0.0.3440.1440/-1050.0.1050.1680@0.0.3440.1440" timestamp="1605925810190" />
+    <state width="3397" height="507" key="GridCell.Tab.1.left" timestamp="1605925810190">
       <screen x="0" y="0" width="3440" height="1440" />
     </state>
-    <state width="3397" height="507" key="GridCell.Tab.1.left/0.0.3440.1440/-1050.0.1050.1680@0.0.3440.1440" timestamp="1605925127360" />
-    <state width="3397" height="507" key="GridCell.Tab.1.right" timestamp="1605925127360">
+    <state width="3397" height="507" key="GridCell.Tab.1.left/0.0.3440.1440/-1050.0.1050.1680@0.0.3440.1440" timestamp="1605925810190" />
+    <state width="3397" height="507" key="GridCell.Tab.1.right" timestamp="1605925810190">
       <screen x="0" y="0" width="3440" height="1440" />
     </state>
-    <state width="3397" height="507" key="GridCell.Tab.1.right/0.0.3440.1440/-1050.0.1050.1680@0.0.3440.1440" timestamp="1605925127360" />
+    <state width="3397" height="507" key="GridCell.Tab.1.right/0.0.3440.1440/-1050.0.1050.1680@0.0.3440.1440" timestamp="1605925810190" />
     <state x="718" y="278" key="SettingsEditor" timestamp="1605924250509">
       <screen x="0" y="0" width="3440" height="1440" />
     </state>
