@@ -82,6 +82,10 @@ public class ShopAdsIO {
         config.setSetNameCost(fc.getDouble("setNameCost", 0));
 
         config.setSetAdCost(fc.getDouble("setAdCost", 0));
+
+        config.setSetLocationCost(fc.getDouble("setLocationCost", 0));
+
+        config.setSetWorldCost(fc.getDouble("setWorldCost", 0));
     }
 
     public boolean loadPlayers() {
