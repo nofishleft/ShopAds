@@ -132,7 +132,7 @@ Players pay depending on how many hours they want their ad to run for and Shop A
 | /ads list                                  | List all ads                     | shopads.commands.ads                        |
 | /ads config                                | List config options              | shopads.config                              |
 | /ads config <key> <value>                  | Set a config option              | shopads.config                              |
-| /ads reload                                | Reload the plugin                | shopads.reload                              |
+| /ads reload\|rel                           | Reload the plugin                | shopads.reload                              |
 | /ads disable                               | Disable the plugin               | shopads.disable                             |
 | /shops                                     | List all shops                   | shopads.commands.shops                      |
 | /shops <shop>                              | Teleport to a shop               | shopads.commands.shops                      |
