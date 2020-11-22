@@ -141,25 +141,128 @@ Players pay depending on how many hours they want their ad to run for and Shop A
 
 ## Permissions
 
-| Permission              | Description                    | Children                                                                                                                                                | Default |
-|-------------------------|--------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|---------|
-| shopads.*               | All permissions                | shopads.user shopads.admin                                                                                                                              |         |
-| shopads.user            | User permissions               | shopads.commands.ads shopads.commands.shops shopads.create shopads.delete.self shopads.stats.self shopads.set.self                                      | true    |
-| shopads.admin           | Admin permissions              | shopads.time.unlimited shopads.count.unlimited shopads.delete.other shopads.stats.other shopads.set.other shopads.reload shopads.config shopads.disable | op      |
-| shopads.commands.ads    | Allows use of /ads             |                                                                                                                                                         |         |
-| shopads.commands.shops  | Allows use of /shops           |                                                                                                                                                         |         |
-| shopads.create          | Creation of shop ads           |                                                                                                                                                         |         |
-| shopads.delete.self     | Deletion of YOUR ads           |                                                                                                                                                         |         |
-| shopads.delete.other    | Deletion of OTHERS ads         |                                                                                                                                                         |         |
-| shopads.stats.self      | Viewing YOUR stats             |                                                                                                                                                         |         |
-| shopads.stats.other     | Viewing OTHERS stats           |                                                                                                                                                         |         |
-| shopads.set.self        | Modifying YOUR ads             |                                                                                                                                                         |         |
-| shopads.set.other       | Modifying OTHERS ads           |                                                                                                                                                         |         |
-| shopads.time.unlimited  | Unlimited run time on YOUR ads |                                                                                                                                                         |         |
-| shopads.count.unlimited | Unlimited ads                  |                                                                                                                                                         |         |
-| shopads.reload          | Reloads this plugin            |                                                                                                                                                         |         |
-| shopads.config          | Configures this plugin         |                                                                                                                                                         |         |
-| shopads.disable         | Disables this plugin           |                                                                                                                                                         |         |
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-0pky">Permission</th>
+    <th class="tg-0pky">Description</th>
+    <th class="tg-0pky">Children</th>
+    <th class="tg-0pky">Default</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-0pky">shopads.*</td>
+    <td class="tg-0pky">All permissions</td>
+    <td class="tg-0pky">shopads.user<br>shopads.admin</td>
+    <td class="tg-0pky"></td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">shopads.user</td>
+    <td class="tg-0pky">User permissions</td>
+    <td class="tg-0pky">shopads.commands.ads<br>shopads.commands.shops<br>shopads.create<br>shopads.delete.self<br>shopads.stats.self<br>shopads.set.self</td>
+    <td class="tg-0pky">true</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">shopads.admin</td>
+    <td class="tg-0pky">Admin permissions</td>
+    <td class="tg-0pky">shopads.time.unlimited<br>shopads.count.unlimited<br>shopads.delete.other<br>shopads.stats.other<br>shopads.set.other<br>shopads.reload<br>shopads.config<br>shopads.disable</td>
+    <td class="tg-0pky">op</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">shopads.commands.ads</td>
+    <td class="tg-0pky">Allows use of /ads</td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">shopads.commands.shops</td>
+    <td class="tg-0pky">Allows use of /shops</td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">shopads.create</td>
+    <td class="tg-0pky">Creation of shop ads</td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">shopads.delete.self</td>
+    <td class="tg-0pky">Deletion of YOUR ads</td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">shopads.delete.other</td>
+    <td class="tg-0pky">Deletion of OTHERS ads</td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">shopads.stats.self</td>
+    <td class="tg-0pky">Viewing YOUR stats</td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">shopads.stats.other</td>
+    <td class="tg-0pky">Viewing OTHERS stats</td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">shopads.set.self</td>
+    <td class="tg-0pky">Modifying YOUR ads</td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">shopads.set.other</td>
+    <td class="tg-0pky">Modifying OTHERS ads</td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">shopads.time.unlimited</td>
+    <td class="tg-0pky">Unlimited run time on YOUR ads</td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">shopads.count.unlimited</td>
+    <td class="tg-0pky">Unlimited ads</td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">shopads.reload</td>
+    <td class="tg-0pky">Reloads this plugin</td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">shopads.config</td>
+    <td class="tg-0pky">Configures this plugin</td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">shopads.disable</td>
+    <td class="tg-0pky">Disables this plugin</td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+  </tr>
+</tbody>
+</table>
 
 ---
 
