@@ -42,118 +42,77 @@ Players pay depending on how many hours they want their ad to run for and Shop A
 | defaultAdColor     | Gray    | String/Color         | Default ad message color.                                                          |
 
 <br />
-
-<style type="text/css">
-.tg  {border-collapse:collapse;border-spacing:0;}
-.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
-  overflow:hidden;padding:10px 5px;word-break:normal;}
-.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
-  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
-.tg .tg-yj49{background-color:#aa00aa;border-color:#000000;text-align:left;vertical-align:top}
-.tg .tg-hfk9{background-color:#000000;border-color:#000000;text-align:left;vertical-align:top}
-.tg .tg-rqw9{background-color:#ffaa00;border-color:#000000;text-align:left;vertical-align:top}
-.tg .tg-vh8p{background-color:#5555ff;border-color:#000000;text-align:left;vertical-align:top}
-.tg .tg-imi1{background-color:#aaaaaa;border-color:#000000;text-align:left;vertical-align:top}
-.tg .tg-1iy1{background-color:#00aa00;border-color:#000000;text-align:left;vertical-align:top}
-.tg .tg-m4uh{background-color:#ff5555;border-color:#000000;text-align:left;vertical-align:top}
-.tg .tg-fkmh{background-color:#55ffff;border-color:#000000;text-align:left;vertical-align:top}
-.tg .tg-6889{background-color:#ffff55;border-color:#000000;text-align:left;vertical-align:top}
-.tg .tg-woix{background-color:#0000aa;border-color:#000000;text-align:left;vertical-align:top}
-.tg .tg-73oq{border-color:#000000;text-align:left;vertical-align:top}
-.tg .tg-na2f{background-color:#00aaaa;border-color:#000000;text-align:left;vertical-align:top}
-.tg .tg-gpuf{background-color:#aa0000;border-color:#000000;text-align:left;vertical-align:top}
-.tg .tg-jrpz{background-color:#555555;border-color:#000000;text-align:left;vertical-align:top}
-.tg .tg-zoc7{background-color:#55ff55;border-color:#000000;text-align:left;vertical-align:top}
-.tg .tg-2o5z{background-color:#ff55ff;border-color:#000000;text-align:left;vertical-align:top}
-</style>
 <table class="tg">
 <thead>
   <tr>
     <th class="tg-73oq">Color Name</th>
     <th class="tg-73oq">Minecraft Color Code</th>
-    <th class="tg-73oq">Preview</th>
   </tr>
 </thead>
 <tbody>
   <tr>
     <td class="tg-73oq">Black</td>
     <td class="tg-73oq">§0</td>
-    <td class="tg-hfk9"></td>
   </tr>
   <tr>
     <td class="tg-73oq">Dark Blue</td>
     <td class="tg-73oq">§1</td>
-    <td class="tg-woix"></td>
   </tr>
   <tr>
     <td class="tg-73oq">Dark Green</td>
     <td class="tg-73oq">§2</td>
-    <td class="tg-1iy1"></td>
   </tr>
   <tr>
     <td class="tg-73oq">Teal</td>
     <td class="tg-73oq">§3</td>
-    <td class="tg-na2f"></td>
   </tr>
   <tr>
     <td class="tg-73oq">Dark Red</td>
     <td class="tg-73oq">§4</td>
-    <td class="tg-gpuf"></td>
   </tr>
   <tr>
     <td class="tg-73oq">Purple</td>
     <td class="tg-73oq">§5</td>
-    <td class="tg-yj49"></td>
   </tr>
   <tr>
     <td class="tg-73oq">Gold</td>
     <td class="tg-73oq">§6</td>
-    <td class="tg-rqw9"></td>
   </tr>
   <tr>
     <td class="tg-73oq">Gray</td>
     <td class="tg-73oq">§7</td>
-    <td class="tg-imi1"></td>
   </tr>
   <tr>
     <td class="tg-73oq">Dark Gray</td>
     <td class="tg-73oq">§8</td>
-    <td class="tg-jrpz"></td>
   </tr>
   <tr>
     <td class="tg-73oq">Blue</td>
     <td class="tg-73oq">§9</td>
-    <td class="tg-vh8p"></td>
   </tr>
   <tr>
     <td class="tg-73oq">Bright Green</td>
     <td class="tg-73oq">§a</td>
-    <td class="tg-zoc7"></td>
   </tr>
   <tr>
     <td class="tg-73oq">Aqua</td>
     <td class="tg-73oq">§b</td>
-    <td class="tg-fkmh"></td>
   </tr>
   <tr>
     <td class="tg-73oq">Red</td>
     <td class="tg-73oq">§c</td>
-    <td class="tg-m4uh"></td>
   </tr>
   <tr>
     <td class="tg-73oq">Light Purple</td>
     <td class="tg-73oq">§d</td>
-    <td class="tg-2o5z"></td>
   </tr>
   <tr>
     <td class="tg-73oq">Yellow</td>
     <td class="tg-73oq">§e</td>
-    <td class="tg-6889"></td>
   </tr>
   <tr>
     <td class="tg-73oq">White</td>
     <td class="tg-73oq">§f</td>
-    <td class="tg-73oq"></td>
   </tr>
 </tbody>
 </table>
