@@ -205,7 +205,7 @@ public class ShopAdsCommand
     private void create(Player player, String[] args) {
         ShopAdsMessage.console.debug("create command");
         ShopAdsMessage.console.debug("args.length = " + args.length);
-        if (args.length >= 3) {
+        if (args.length >= 4) {
             ShopAdsMessage.console.debug("args is the correct size");
             ShopAdsMessage.console.debug("Character at args[2] = " + args[2].charAt(0));
             if (Character.isLetter(args[2].charAt(0))) {
@@ -315,7 +315,7 @@ public class ShopAdsCommand
             Date timeToEnd = calNow.getTime();
             timeToEnd.setTime(dateNow.getTime() + Long.parseLong(args[2]) * 3600000L);
             StringBuilder ad = new StringBuilder(args[3]);
-            if (args.length > 4) {
+            if (args.length >= 4) {
                 for (int i = 4; i < args.length; i++) {
                     ad.append(" ");
                     ad.append(args[i]);

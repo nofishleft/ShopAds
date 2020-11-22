@@ -82,7 +82,7 @@ public class ShopHandler {
                 newWorlds.add(world);
             }
         }
-        this.shops.get(index).setWorldsToAdvertiseIn((String[]) newWorlds.toArray());
+        this.shops.get(index).setWorldsToAdvertiseIn(newWorlds.toArray(new String[0]));
     }
 
     public void removeShopWorld(int index, String w, Player player) {

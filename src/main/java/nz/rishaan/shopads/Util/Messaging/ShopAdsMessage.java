@@ -124,10 +124,7 @@ public class ShopAdsMessage {
     }
 
     public void shopExpired(Shop shop) {
-        Player[] arrayOfPlayer;
-        int j = (arrayOfPlayer = (Player[]) ShopAds.server.getOnlinePlayers().toArray()).length;
-        for (int i = 0; i < j; i++) {
-            Player p = arrayOfPlayer[i];
+        for (Player p : ShopAds.server.getOnlinePlayers()) {
             if (p.getName().equalsIgnoreCase(shop.getShopOwner())) {
                 p.sendMessage(ShopAds.prefix + "Your shop, " + shop.getShopName() + ", has expired.");
             }
