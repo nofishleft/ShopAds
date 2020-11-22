@@ -1,5 +1,5 @@
 name: ShopAds
-version: @version@
+version: 0.87
 main: nz.rishaan.shopads.ShopAds
 api-version: 1.16
 prefix: ShopAds
