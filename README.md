@@ -119,9 +119,47 @@ Players pay depending on how many hours they want their ad to run for and Shop A
 
 ---
 
+## Commands
+
+| Usage                                      | Description                      | Permission                                  |
+|--------------------------------------------|----------------------------------|---------------------------------------------|
+| /ads create\|c <shopname> <hrs> <message>  | Creates a new ad                 | shopads.create                              |
+| /ads set <shopname> loc                    | Modify the location of an ad     | shopads.set.self \| shopads.set.other       |
+| /ads set <shopname> <name\|ad> <value>     | Modify the name/message of an ad | shopads.set.self \| shopads.set.other       |
+| /ads delete\|del <shopname>                | Delete an ad/shop                | shopads.delete.self \| shopads.delete.other |
+| /ads stats\|stat [player]                  | View stats for a player's ads    | shopads.stats.self \| shopads.stats.other   |
+| /ads rates                                 | List current hourly ad cost      | shopads.commands.ads                        |
+| /ads list                                  | List all ads                     | shopads.commands.ads                        |
+| /ads config                                | List config options              | shopads.config                              |
+| /ads config <key> <value>                  | Set a config option              | shopads.config                              |
+| /ads reload                                | Reload the plugin                | shopads.reload                              |
+| /ads disable                               | Disable the plugin               | shopads.disable                             |
+| /shops                                     | List all shops                   | shopads.commands.shops                      |
+| /shops <shop>                              | Teleport to a shop               | shopads.commands.shops                      |
+
+---
+
 ## Permissions
 
-TO DO
+| Permission              | Description                    | Children                                                                                                                                                | Default |
+|-------------------------|--------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|---------|
+| shopads.*               | All permissions                | shopads.user shopads.admin                                                                                                                              |         |
+| shopads.user            | User permissions               | shopads.commands.ads shopads.commands.shops shopads.create shopads.delete.self shopads.stats.self shopads.set.self                                      | true    |
+| shopads.admin           | Admin permissions              | shopads.time.unlimited shopads.count.unlimited shopads.delete.other shopads.stats.other shopads.set.other shopads.reload shopads.config shopads.disable | op      |
+| shopads.commands.ads    | Allows use of /ads             |                                                                                                                                                         |         |
+| shopads.commands.shops  | Allows use of /shops           |                                                                                                                                                         |         |
+| shopads.create          | Creation of shop ads           |                                                                                                                                                         |         |
+| shopads.delete.self     | Deletion of YOUR ads           |                                                                                                                                                         |         |
+| shopads.delete.other    | Deletion of OTHERS ads         |                                                                                                                                                         |         |
+| shopads.stats.self      | Viewing YOUR stats             |                                                                                                                                                         |         |
+| shopads.stats.other     | Viewing OTHERS stats           |                                                                                                                                                         |         |
+| shopads.set.self        | Modifying YOUR ads             |                                                                                                                                                         |         |
+| shopads.set.other       | Modifying OTHERS ads           |                                                                                                                                                         |         |
+| shopads.time.unlimited  | Unlimited run time on YOUR ads |                                                                                                                                                         |         |
+| shopads.count.unlimited | Unlimited ads                  |                                                                                                                                                         |         |
+| shopads.reload          | Reloads this plugin            |                                                                                                                                                         |         |
+| shopads.config          | Configures this plugin         |                                                                                                                                                         |         |
+| shopads.disable         | Disables this plugin           |                                                                                                                                                         |         |
 
 ---
 
