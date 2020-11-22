@@ -36,80 +36,71 @@ public class ShopAdsCommand
         if ((commandLabel.equalsIgnoreCase("ad")) || (commandLabel.equalsIgnoreCase("ads"))) {
             ShopAdsMessage.console.debug("ad command");
             if (args.length > 0) {
-                if (args[0].equalsIgnoreCase("on")) {
-                    on(player, args);
-                    return true;
+                switch (args[0].toLowerCase()) {
+                    case "on":
+                        on(player, args);
+                        break;
+                    case "off":
+                        off(player, args);
+                        break;
+                    case "stat":
+                    case "stats":
+                        if (ShopAds.permissions.hasStatsSelf(player) || ShopAds.permissions.hasStatsOther(player))
+                            stats(player, args);
+                        else
+                            ShopAdsMessage.error.noCommandPermission(player, "STATS");
+                        break;
+                    case "del":
+                    case "delete":
+                        if (ShopAds.permissions.hasDeleteSelf(player) || ShopAds.permissions.hasDeleteOther(player))
+                            delete(player, args);
+                        else
+                            ShopAdsMessage.error.noCommandPermission(player, "DELETE");
+                        break;
+                    case "c":
+                    case "create":
+                        if (ShopAds.permissions.hasCreate(player))
+                            create(player, args);
+                        else
+                            ShopAdsMessage.error.noCommandPermission(player, "CREATE");
+                        break;
+                    case "rate":
+                    case "rates":
+                        rates(player, args);
+                        break;
+                    case "list":
+                        list(player, args);
+                        break;
+                    case "rel":
+                    case "reload":
+                        if (ShopAds.permissions.hasReload(player))
+                            reload(player, args);
+                        else
+                            ShopAdsMessage.error.noCommandPermission(player, "RELOAD");
+                        break;
+                    case "config":
+                        if (ShopAds.permissions.hasConfig(player))
+                            config(player, args);
+                        else
+                            ShopAdsMessage.error.noCommandPermission(player, "CONFIG");
+                        break;
+                    case "disable":
+                        if (ShopAds.permissions.hasDisable(player))
+                            disable(player, args);
+                        else
+                            ShopAdsMessage.error.noCommandPermission(player, "DISABLE");
+                        break;
+                    case "set":
+                        if (ShopAds.permissions.hasSetSelf(player) || ShopAds.permissions.hasSetOther(player))
+                            set(player, args);
+                        else
+                            ShopAdsMessage.error.noCommandPermission(player, "SET");
+                        break;
+                    default:
+                        ShopAdsMessage.commandUsage.incorrectUsage(player);
+                        ShopAdsMessage.commandUsage.fullCommandMenu(player);
+                        break;
                 }
-                if (args[0].equalsIgnoreCase("off")) {
-                    off(player, args);
-                    return true;
-                }
-                if ((args[0].equalsIgnoreCase("stat")) || (args[0].equalsIgnoreCase("stats"))) {
-                    if (!ShopAds.permissions.hasStatsPermission(player)) {
-                        ShopAdsMessage.error.noCommandPermission(player, "STATS");
-                        return true;
-                    }
-                    stats(player, args);
-                    return true;
-                }
-                if ((args[0].equalsIgnoreCase("del")) || (args[0].equalsIgnoreCase("delete"))) {
-                    if (!ShopAds.permissions.hasDeleteOwnPermission(player)) {
-                        ShopAdsMessage.error.noCommandPermission(player, "DELETE");
-                        return true;
-                    }
-                    delete(player, args);
-                    return true;
-                }
-                if ((args[0].equalsIgnoreCase("c")) || (args[0].equalsIgnoreCase("create"))) {
-                    if (!ShopAds.permissions.hasCreatePermission(player)) {
-                        ShopAdsMessage.error.noCommandPermission(player, "CREATE");
-                        return true;
-                    }
-                    create(player, args);
-                    return true;
-                }
-                if ((args[0].equalsIgnoreCase("rate")) || (args[0].equalsIgnoreCase("rates"))) {
-                    rates(player, args);
-                    return true;
-                }
-                if (args[0].equalsIgnoreCase("list")) {
-                    list(player, args);
-                    return true;
-                }
-                if ((args[0].equalsIgnoreCase("rel")) || (args[0].equalsIgnoreCase("reload"))) {
-                    if (!ShopAds.permissions.hasAdminPermission(player)) {
-                        ShopAdsMessage.error.noCommandPermission(player, "RELOAD");
-                        return true;
-                    }
-                    reload(player, args);
-                    return true;
-                }
-                if (args[0].equalsIgnoreCase("config")) {
-                    if (!ShopAds.permissions.hasAdminPermission(player)) {
-                        ShopAdsMessage.error.noCommandPermission(player, "CONFIG");
-                        return true;
-                    }
-                    config(player, args);
-                    return true;
-                }
-                if (args[0].equalsIgnoreCase("disable")) {
-                    if (!ShopAds.permissions.hasAdminPermission(player)) {
-                        ShopAdsMessage.error.noCommandPermission(player, "DISABLE");
-                        return true;
-                    }
-                    disable(player, args);
-                    return true;
-                }
-                if (args[0].equalsIgnoreCase("set")) {
-                    if (!ShopAds.permissions.hasSetPermission(player)) {
-                        ShopAdsMessage.error.noCommandPermission(player, "SET");
-                        return true;
-                    }
-                    set(player, args);
-                    return true;
-                }
-                ShopAdsMessage.commandUsage.incorrectUsage(player);
-                ShopAdsMessage.commandUsage.fullCommandMenu(player);
                 return true;
             }
             ShopAdsMessage.commandUsage.fullCommandMenu(player);
@@ -176,15 +167,13 @@ public class ShopAdsCommand
     private void stats(Player player, String[] args) {
         if (args.length == 2) {
             ShopAdsMessage.command.ownedShopsOther(player, args[1]);
-            return;
-        }
-        if (args.length == 1) {
+        } else if (args.length == 1) {
             ShopAdsMessage.console.debug("stats command");
             ShopAdsMessage.command.ownedShopsSelf(player);
-            return;
+        } else {
+            ShopAdsMessage.commandUsage.incorrectUsage(player);
+            ShopAdsMessage.commandUsage.statsCommand(player);
         }
-        ShopAdsMessage.commandUsage.incorrectUsage(player);
-        ShopAdsMessage.commandUsage.statsCommand(player);
     }
 
     private void delete(Player player, String[] args) {
@@ -193,21 +182,24 @@ public class ShopAdsCommand
             String shopToDelete = args[1];
             Shop deleteMe = ShopAds.shopHandler.getShop(shopToDelete);
             if (deleteMe != null) {
-                if ((ShopAds.shopHandler.ownsShop(deleteMe, player)) || (ShopAds.permissions.hasAdminDeletePermission(player))) {
+                if ((ShopAds.shopHandler.ownsShop(deleteMe, player) && ShopAds.permissions.hasDeleteSelf(player))
+                        || (ShopAds.permissions.hasDeleteOther(player))) {
                     ShopAds.shopHandler.removeShop(deleteMe);
                     ShopAdsMessage.command.shopDeleted(player, deleteMe);
                     ShopAds.iO.saveShops();
                     ShopAds.iO.loadShops();
                     ShopAds.playerHandler.getPlayer(deleteMe.getShopOwner()).subtractOwnedShop();
+                } else {
+                    ShopAdsMessage.error.notYourShop(player, deleteMe);
                 }
             } else {
                 ShopAdsMessage.error.noShopFound(player, shopToDelete);
-                return;
             }
+        } else {
+            ShopAdsMessage.error.noShopEntered(player);
+            ShopAdsMessage.commandUsage.incorrectUsage(player);
+            ShopAdsMessage.commandUsage.deleteCommand(player);
         }
-        ShopAdsMessage.error.noShopEntered(player);
-        ShopAdsMessage.commandUsage.incorrectUsage(player);
-        ShopAdsMessage.commandUsage.deleteCommand(player);
     }
 
     private void create(Player player, String[] args) {
@@ -217,12 +209,16 @@ public class ShopAdsCommand
             ShopAdsMessage.console.debug("args is the correct size");
             ShopAdsMessage.console.debug("Character at args[2] = " + args[2].charAt(0));
             if (Character.isLetter(args[2].charAt(0))) {
-                if (ShopAds.permissions.hasAdminPermission(player)) {
+                if (ShopAds.permissions.hasTimeUnlimited(player)) {
                     createShopUnlimited(player, args);
+                    return;
                 }
             } else if (Character.isDigit(args[2].charAt(0))) {
-                if ((ShopAds.playerHandler.getPlayer(player.getName()).getOwnedShops() < ShopAds.config.getShopsPerPlayer()) || (ShopAds.permissions.hasAdminPermission(player))) {
+                if ((ShopAds.playerHandler.getPlayer(player.getName()).getOwnedShops() < ShopAds.config.getShopsPerPlayer())
+                        || (ShopAds.permissions.hasCountUnlimited(player))) {
                     createShopWithTime(player, args);
+                } else {
+                    ShopAdsMessage.error.maxShopsReached(player);
                 }
                 return;
             }
@@ -284,7 +280,7 @@ public class ShopAdsCommand
         } else if (ShopAds.shopHandler.shopExists(args[1])) {
             Shop shop = ShopAds.shopHandler.getShop(args[1]);
             if ((!shop.getShopOwner().equalsIgnoreCase(player.getName())) &&
-                    (!ShopAds.permissions.hasSetOtherPermission(player))) {
+                    (!ShopAds.permissions.hasSetOther(player))) {
                 ShopAdsMessage.error.notYourShop(player, shop);
             } else if (args.length == 2) {
                 ShopAdsMessage.console.debug("show shop settings");

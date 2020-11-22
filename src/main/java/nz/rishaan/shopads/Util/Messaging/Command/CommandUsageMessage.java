@@ -11,50 +11,58 @@ public class CommandUsageMessage
         ShopAdsMessage.console.debug("Full COmmand List");
         player.sendMessage(ShopAds.prefix + "Commands");
         if (!ShopAds.config.getSendToAll()) {
-            if (ShopAds.permissions.hasCreatePermission(player)) {
+            if (ShopAds.permissions.hasCreate(player)) {
                 createCommand(player);
             }
-            if (ShopAds.permissions.hasSetPermission(player)) {
+            if (ShopAds.permissions.hasSetSelf(player) || ShopAds.permissions.hasSetOther(player)) {
                 setCommand(player);
             }
-            if (ShopAds.permissions.hasDeleteOwnPermission(player)) {
+            if (ShopAds.permissions.hasDeleteSelf(player) || ShopAds.permissions.hasDeleteOther(player)) {
                 deleteCommand(player);
             }
-            if ((ShopAds.permissions.hasAdminPermission(player)) || (ShopAds.permissions.hasStatsOtherPermission(player))) {
+            if (ShopAds.permissions.hasStatsOther(player)) {
                 statsOtherCommand(player);
-            } else if (ShopAds.permissions.hasStatsPermission(player)) {
+            } else if (ShopAds.permissions.hasStatsSelf(player)) {
                 statsCommand(player);
             }
             ratesCommand(player);
             listCommand(player);
             onCommand(player);
             offCommand(player);
-            if (ShopAds.permissions.hasAdminPermission(player)) {
+            if (ShopAds.permissions.hasConfig(player)) {
                 configCommand(player);
+            }
+            if (ShopAds.permissions.hasReload(player)) {
                 reloadCommand(player);
+            }
+            if (ShopAds.permissions.hasDisable(player)) {
                 disableCommand(player);
             }
             shopsCommand(player);
         } else {
-            if (ShopAds.permissions.hasCreatePermission(player)) {
+            if (ShopAds.permissions.hasCreate(player)) {
                 createCommand(player);
             }
-            if (ShopAds.permissions.hasSetPermission(player)) {
+            if (ShopAds.permissions.hasSetSelf(player) || ShopAds.permissions.hasSetOther(player)) {
                 setCommand(player);
             }
-            if (ShopAds.permissions.hasDeleteOwnPermission(player)) {
+            if (ShopAds.permissions.hasDeleteSelf(player) || ShopAds.permissions.hasDeleteOther(player)) {
                 deleteCommand(player);
             }
-            if ((ShopAds.permissions.hasAdminPermission(player)) || (ShopAds.permissions.hasStatsOtherPermission(player))) {
+            if (ShopAds.permissions.hasStatsOther(player)) {
                 statsOtherCommand(player);
-            } else if (ShopAds.permissions.hasStatsPermission(player)) {
+            } else if (ShopAds.permissions.hasStatsSelf(player)) {
                 statsCommand(player);
             }
             ratesCommand(player);
             listCommand(player);
-            if (ShopAds.permissions.hasAdminPermission(player)) {
+            if (ShopAds.permissions.hasConfig(player)) {
                 configCommand(player);
+            }
+            if (ShopAds.permissions.hasReload(player)) {
                 reloadCommand(player);
+            }
+            if (ShopAds.permissions.hasDisable(player)) {
                 disableCommand(player);
             }
             shopsCommand(player);

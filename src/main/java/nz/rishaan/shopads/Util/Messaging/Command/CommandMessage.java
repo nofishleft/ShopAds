@@ -44,61 +44,69 @@ public class CommandMessage
     }
 
     public void ownedShopsSelf(Player player) {
-        if (ShopAds.playerHandler.playerExists(player.getName())) {
-            ShopAdsMessage.console.debug("ownedShopsSelf - Player exists");
-            if (ShopAds.playerHandler.getPlayer(player.getName()).getOwnedShops() == 0) {
-                player.sendMessage(ShopAds.prefix + "You are not currently advertising.");
-                return;
-            }
-            if (ShopAds.playerHandler.getPlayer(player.getName()).getOwnedShops() == 1) {
-                player.sendMessage(ShopAds.prefix + "You currently are advertising one shop:");
+        if (ShopAds.permissions.hasStatsSelf(player)) {
+            if (ShopAds.playerHandler.playerExists(player.getName())) {
+                ShopAdsMessage.console.debug("ownedShopsSelf - Player exists");
                 ArrayList<Shop> playersShops = ShopAds.shopHandler.getPlayersShops(player);
-                for (Shop s : playersShops) {
-                    ShopAdsMessage.console.debug("ownedShopsSelf - displaying stats for " + s.getShopName());
-                    shopStats(player, s);
+                switch (playersShops.size()) {
+                    case 0:
+                        player.sendMessage(ShopAds.prefix + "You are not currently advertising.");
+                        break;
+                    case 1:
+                        player.sendMessage(ShopAds.prefix + "You currently are advertising one shop:");
+                        for (Shop s : playersShops) {
+                            ShopAdsMessage.console.debug("ownedShopsSelf - displaying stats for " + s.getShopName());
+                            shopStats(player, s);
+                        }
+                        break;
+                    default:
+                        player.sendMessage(ShopAds.prefix + "You currently are advertising " + playersShops.size() + " shops:");
+                        ShopAdsMessage.console.debug("ownedShopsSelf - size of playersShops: " + playersShops.size());
+                        for (Shop s : playersShops) {
+                            ShopAdsMessage.console.debug("ownedShopsSelf - displaying stats for " + s.getShopName());
+                            shopStats(player, s);
+                        }
+                        break;
                 }
-                return;
+            } else {
+                ShopAdsMessage.console.debug("Player doesn't exist");
             }
-            if (ShopAds.playerHandler.getPlayer(player.getName()).getOwnedShops() > 1) {
-                player.sendMessage(ShopAds.prefix + "You currently are advertising " + ShopAds.playerHandler.getPlayer(player.getName()).getOwnedShops() + " shops:");
-                ArrayList<Shop> playersShops = ShopAds.shopHandler.getPlayersShops(player);
-                ShopAdsMessage.console.debug("ownedShopsSelf - size of playersShops: " + playersShops.size());
-                for (Shop s : playersShops) {
-                    ShopAdsMessage.console.debug("ownedShopsSelf - displaying stats for " + s.getShopName());
-                    shopStats(player, s);
-                }
-                return;
-            }
+        } else {
+                ShopAdsMessage.error.noCommandPermission(player, "STATS_SELF");
         }
-        ShopAdsMessage.console.debug("Player doesn't exist");
     }
 
     public void ownedShopsOther(Player requester, String player) {
         ShopAdsMessage.console.debug("ownedShopOther message");
-        if (ShopAds.playerHandler.playerExists(player)) {
-            if (ShopAds.playerHandler.getPlayer(player).getOwnedShops() == 0) {
-                requester.sendMessage(ShopAds.prefix + player + " is not currently advertising.");
-            }
-            if (ShopAds.playerHandler.getPlayer(player).getOwnedShops() == 1) {
-                requester.sendMessage(ShopAds.prefix + player + " currently is advertising one shop.");
+        if (ShopAds.permissions.hasStatsOther(requester)) {
+            if (ShopAds.playerHandler.playerExists(player)) {
                 ArrayList<Shop> playersShops = ShopAds.shopHandler.getPlayersShops(player);
-                for (Shop s : playersShops) {
-                    ShopAdsMessage.console.debug("displaying stats for " + s.getShopName());
-                    shopStats(requester, s);
+                switch (playersShops.size()) {
+                    case 0:
+                        requester.sendMessage(ShopAds.prefix + player + " is not currently advertising.");
+                        break;
+                    case 1:
+                        requester.sendMessage(ShopAds.prefix + player + " currently is advertising one shop.");
+                        for (Shop s : playersShops) {
+                            ShopAdsMessage.console.debug("displaying stats for " + s.getShopName());
+                            shopStats(requester, s);
+                        }
+                        break;
+                    default:
+                        requester.sendMessage(ShopAds.prefix + player + " currently is advertising " + playersShops.size() + " shops.");
+                        for (Shop s : playersShops) {
+                            ShopAdsMessage.console.debug("displaying stats for " + s.getShopName());
+                            shopStats(requester, s);
+                        }
+                        break;
                 }
-                return;
+            } else {
+                requester.sendMessage(ShopAds.prefix + player + " does not have any shops or doesn't exist.");
             }
-            if (ShopAds.playerHandler.getPlayer(player).getOwnedShops() > 1) {
-                requester.sendMessage(ShopAds.prefix + player + " currently is advertising " + ShopAds.playerHandler.getPlayer(player).getOwnedShops() + " shops.");
-                ArrayList<Shop> playersShops = ShopAds.shopHandler.getPlayersShops(player);
-                for (Shop s : playersShops) {
-                    ShopAdsMessage.console.debug("displaying stats for " + s.getShopName());
-                    shopStats(requester, s);
-                }
-                return;
-            }
+        } else {
+            ShopAdsMessage.error.noCommandPermission(requester, "STATS_OTHERS");
         }
-        requester.sendMessage(ShopAds.prefix + player + " does not have any shops or doesn't exist.");
+
     }
 
     public void shopCreated(Player player, Shop newShop) {

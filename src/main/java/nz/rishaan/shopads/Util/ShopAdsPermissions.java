@@ -7,81 +7,67 @@ import org.bukkit.entity.Player;
 public class ShopAdsPermissions {
     public Permission permission = null;
 
-    public boolean hasCreatorPermission(Player player) {
-        if (this.permission.has(player, "ShopAds.Creator")) {
-            ShopAdsMessage.console.debug(player.getDisplayName() + " has creator permission");
-            return true;
-        }
-        return false;
+    public boolean hasCreate(Player player)
+    {
+        return this.permission.has(player, "shopads.create");
     }
 
-    public boolean hasCreatePermission(Player player) {
-        if (hasCreatorPermission(player)) {
-            ShopAdsMessage.console.debug(player.getDisplayName() + " has creator permission so has create");
-            return true;
-        }
-        if (hasAdminPermission(player)) {
-            ShopAdsMessage.console.debug(player.getDisplayName() + " has admin permission so has create");
-            return true;
-        }
-        return this.permission.has(player, "ShopAds.Creator.create");
+    public boolean hasDeleteSelf(Player player)
+    {
+        return this.permission.has(player, "shopads.delete.self");
     }
 
-    public boolean hasSetPermission(Player player) {
-        if (hasCreatorPermission(player)) {
-            return true;
-        }
-        if (hasAdminPermission(player)) {
-            return true;
-        }
-        return this.permission.has(player, "ShopAds.Creator.set.self");
+    public boolean hasDeleteOther(Player player)
+    {
+        return this.permission.has(player, "shopads.delete.other");
     }
 
-    public boolean hasStatsPermission(Player player) {
-        if (hasCreatorPermission(player)) {
-            return true;
-        }
-        if (hasAdminPermission(player)) {
-            return true;
-        }
-        return this.permission.has(player, "ShopAds.Creator.stats.self");
+    public boolean hasSetSelf(Player player)
+    {
+        return this.permission.has(player, "shopads.set.self");
     }
 
-    public boolean hasStatsOtherPermission(Player player) {
-        if (hasAdminPermission(player)) {
-            return true;
-        }
-        return this.permission.has(player, "ShopAds.Admin.stats.other");
+    public boolean hasSetOther(Player player)
+    {
+        return this.permission.has(player, "shopads.set.other");
     }
 
-    public boolean hasAdminDeletePermission(Player player) {
-        if (hasAdminPermission(player)) {
-            return true;
-        }
-        return this.permission.has(player, "ShopAds.Admin.delete.other");
+    public boolean hasStatsSelf(Player player)
+    {
+        return this.permission.has(player, "shopads.stats.self");
     }
 
-    public boolean hasDeleteOwnPermission(Player player) {
-        if (hasCreatorPermission(player)) {
-            return true;
-        }
-        if (hasAdminPermission(player)) {
-            return true;
-        }
-        return this.permission.has(player, "ShopAds.Creator.delete.own");
+    public boolean hasStatsOther(Player player)
+    {
+        return this.permission.has(player, "shopads.stats.other");
     }
 
-    public boolean hasAdminPermission(Player player) {
-        return (this.permission.has(player, "ShopAds.Admin")) || (this.permission.has(player, "ShopAds.*")) || (player.isOp());
+    public boolean hasTimeUnlimited(Player player)
+    {
+        return this.permission.has(player, "shopads.time.unlimited");
     }
 
-    public boolean hasSetOtherPermission(Player player) {
-        if (hasCreatorPermission(player)) {
-            return true;
-        }
-        if (hasAdminPermission(player)) {
-            return true;
-        }
-        return this.permission.has(player, "ShopAds.Creator.set.other");
+    public boolean hasCountUnlimited(Player player)
+    {
+        return this.permission.has(player, "shopads.count.unlimited");
+    }
+
+    public boolean hasDisable(Player player)
+    {
+        return this.permission.has(player, "shopads.disable");
+    }
+
+    public boolean hasReload(Player player)
+    {
+        return this.permission.has(player, "shopads.reload");
+    }
+
+    public boolean hasConfig(Player player)
+    {
+        return this.permission.has(player, "shopads.config");
+    }
+
+    public boolean hasAdmin(Player player) {
+        return this.permission.has(player, "shopads.admin");
     }
 }

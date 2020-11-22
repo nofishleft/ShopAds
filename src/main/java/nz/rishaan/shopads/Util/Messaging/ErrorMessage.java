@@ -47,6 +47,10 @@ public class ErrorMessage
         player.sendMessage(ShopAds.prefix + "No shop by that name found. (" + shop + ")");
     }
 
+    public void maxShopsReached(Player player) {
+        player.sendMessage(ShopAds.prefix + "You have reached the maximum number of shops.");
+    }
+
     public void noColorEntered(Player player) {
         player.sendMessage(ShopAds.prefix + "You must enter a color.");
     }

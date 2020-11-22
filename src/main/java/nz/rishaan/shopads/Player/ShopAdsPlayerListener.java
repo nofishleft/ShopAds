@@ -22,7 +22,7 @@ public class ShopAdsPlayerListener
             ShopAds.playerHandler.addPlayer(new ShopAdsPlayer(event.getPlayer().getName(), true, 0));
         }
         if ((!this.plugin.pluginUpToDate) &&
-                (ShopAds.permissions.hasAdminPermission(event.getPlayer()))) {
+                (ShopAds.permissions.hasAdmin(event.getPlayer()))) {
             ShopAds.message.newerVersionAvailable(event.getPlayer());
         }
     }

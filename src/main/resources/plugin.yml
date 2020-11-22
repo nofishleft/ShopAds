@@ -4,7 +4,7 @@ main: nz.rishaan.shopads.ShopAds
 api-version: 1.16
 prefix: ShopAds
 description: Hello
-authors: [GitHub/NoFishLeft, Hpiz]
+authors: [GitHub/NoFishLeft, GitHub/Hpiz]
 depend:
   - Vault
 commands:
@@ -12,6 +12,78 @@ commands:
     description: Control creation and receiving of ad
     usage: /<command>
     aliases: ad
+    permission: shopads.commands.ads
   shops:
     description: Actions for current shops
     usage: /<command>
+    permission: shopads.commands.shops
+
+permissions:
+  shopads.*:
+    children:
+      shopads.user: true
+      shopads.admin: true
+
+  shopads.user:
+    default: true
+    children:
+      shopads.commands.ads: true
+      shopads.commands.shops: true
+      shopads.create: true
+      shopads.delete.self: true
+      shopads.stats.self: true
+      shopads.set.self: true
+
+  shopads.admin:
+    default: op
+    children:
+      shopads.time.unlimited: true
+      shopads.count.unlimited: true
+      shopads.delete.other: true
+      shopads.stats.other: true
+      shopads.set.other: true
+      shopads.reload: true
+      shopads.config: true
+      shopads.disable: true
+
+  shopads.commands.ads:
+    description: Allows use of /ads
+
+  shopads.commands.shops:
+      description: Allows use of /shops
+
+  shopads.create:
+    description: Allows creation of shop ads
+
+  shopads.delete.self:
+    description: Allows deletion of YOUR ads
+
+  shopads.delete.other:
+    description: Allows deletion of OTHERS' ads
+
+  shopads.stats.self:
+    description: Allows viewing stats of YOUR ads
+
+  shopads.stats.other:
+    description: Allows viewing stats of OTHERS' ads
+
+  shopads.set.self:
+    description: Allows modifying of YOUR ads
+
+  shopads.set.other:
+    description: Allows modifying of OTHERS' ads
+
+  shopads.time.unlimited:
+    description: Allows YOUR ads to have unlimited run time
+
+  shopads.count.unlimited:
+    description: Allows YOU to have unlimited ads
+
+  shopads.reload:
+    description: Reloads this plugin
+
+  shopads.config:
+    description: Configures this plugin
+
+  shopads.disable:
+      description: Disables this plugin
