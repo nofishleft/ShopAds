@@ -205,26 +205,46 @@ public class ShopAdsCommand
     private void create(Player player, String[] args) {
         ShopAdsMessage.console.debug("create command");
         ShopAdsMessage.console.debug("args.length = " + args.length);
-        if (args.length >= 4) {
-            ShopAdsMessage.console.debug("args is the correct size");
-            ShopAdsMessage.console.debug("Character at args[2] = " + args[2].charAt(0));
-            if (Character.isLetter(args[2].charAt(0))) {
-                if (ShopAds.permissions.hasTimeUnlimited(player)) {
-                    createShopUnlimited(player, args);
-                    return;
-                }
-            } else if (Character.isDigit(args[2].charAt(0))) {
-                if ((ShopAds.playerHandler.getPlayer(player.getName()).getOwnedShops() < ShopAds.config.getShopsPerPlayer())
-                        || (ShopAds.permissions.hasCountUnlimited(player))) {
+
+        if (args.length < 3) {
+            ShopAdsMessage.commandUsage.incorrectUsage(player);
+            ShopAdsMessage.commandUsage.createCommand(player);
+            return;
+        }
+
+        ShopAdsMessage.console.debug("args is the correct size");
+
+        boolean shopLimitNotReached = ShopAds.playerHandler.getPlayer(player.getUniqueId()).getOwnedShops() >= ShopAds.config.getShopsPerPlayer();
+        boolean countUnlimitedPerm = ShopAds.permissions.hasCountUnlimited(player);
+        boolean canCreateShop = countUnlimitedPerm || shopLimitNotReached;
+
+        boolean timeUnlimitedPerm = ShopAds.permissions.hasTimeUnlimited(player);
+
+        ShopAdsMessage.console.debug("Character at args[2] = " + args[2].charAt(0));
+        boolean requestedUnlimited = Character.isLetter(args[2].charAt(0));
+        boolean requestedLimited = Character.isDigit(args[2].charAt(0));
+
+        if (requestedUnlimited && timeUnlimitedPerm) {
+            if (canCreateShop) {
+                createShopUnlimited(player, args);
+            } else {
+                ShopAdsMessage.error.maxShopsReached(player);
+            }
+        } else if (requestedLimited) {
+            if (args.length >= 4) {
+                if (canCreateShop) {
                     createShopWithTime(player, args);
                 } else {
                     ShopAdsMessage.error.maxShopsReached(player);
                 }
-                return;
+            } else {
+                ShopAdsMessage.commandUsage.incorrectUsage(player);
+                ShopAdsMessage.commandUsage.createCommand(player);
             }
+        } else {
+            ShopAdsMessage.commandUsage.incorrectUsage(player);
+            ShopAdsMessage.commandUsage.createCommand(player);
         }
-        ShopAdsMessage.commandUsage.incorrectUsage(player);
-        ShopAdsMessage.commandUsage.createCommand(player);
     }
 
     private void rates(Player player, String[] args) {
@@ -299,47 +319,62 @@ public class ShopAdsCommand
 
     private void createShopWithTime(Player player, String[] args) {
         ShopAdsMessage.console.debug("createShopWithTime started");
+
         if (ShopAds.shopHandler.shopExists(args[1])) {
             ShopAdsMessage.command.shopNameTaken(player);
             return;
         }
-        if (Integer.parseInt(args[2]) <= ShopAds.config.getMaxAdRunTime()) {
-            if (!ShopAds.economy.hasEnough(player, Double.parseDouble(args[2]) * ShopAds.config.getAdCost())) {
+
+        int runTime = Integer.parseInt(args[2]);
+
+        if (runTime <= ShopAds.config.getMaxAdRunTime()) {
+
+            double cost = runTime * ShopAds.config.getAdCost();
+
+            boolean hasEnough = ShopAds.economy.hasEnough(player, cost);
+
+            if (!hasEnough) {
                 ShopAdsMessage.error.insufficientFunds(player, Double.parseDouble(args[2]) * ShopAds.config.getAdCost());
                 return;
             }
-            String[] worlds = new String[1];
-            worlds[0] = player.getWorld().getName();
+
+            String[] worlds = new String[] {player.getWorld().getName()};
             Calendar calNow = Calendar.getInstance();
             Date dateNow = calNow.getTime();
             Date timeToEnd = calNow.getTime();
-            timeToEnd.setTime(dateNow.getTime() + Long.parseLong(args[2]) * 3600000L);
+            timeToEnd.setTime(dateNow.getTime() + runTime * 3600000L);
+
             StringBuilder ad = new StringBuilder(args[3]);
-            if (args.length >= 4) {
-                for (int i = 4; i < args.length; i++) {
-                    ad.append(" ");
-                    ad.append(args[i]);
-                }
+
+            for (int i = 4; i < args.length; i++) {
+                ad.append(" ");
+                ad.append(args[i]);
             }
+
             Shop newShop = new Shop(args[1], player.getLocation(), player.getName(), timeToEnd, false, player.getWorld(), ad.toString(), worlds, true);
             ShopAds.shopHandler.addShop(newShop);
-            ShopAds.economy.chargePlayer(player, Double.parseDouble(args[2]) * ShopAds.config.getAdCost());
+            ShopAds.economy.chargePlayer(player, cost);
             ShopAdsMessage.command.shopCreated(player, newShop);
         } else {
-            ShopAdsMessage.error.overMaxRunTime(player, Integer.parseInt(args[2]));
+            ShopAdsMessage.error.overMaxRunTime(player, runTime);
         }
     }
 
     private void createShopUnlimited(Player player, String[] args) {
-        String[] worlds = new String[1];
-        worlds[0] = player.getWorld().getName();
-        StringBuilder ad = new StringBuilder(args[2]);
-        if (args.length > 3) {
-            for (int i = 3; i < args.length; i++) {
-                ad.append(" ");
-                ad.append(args[i]);
-            }
+        if (ShopAds.shopHandler.shopExists(args[1])) {
+            ShopAdsMessage.command.shopNameTaken(player);
+            return;
         }
+
+        String[] worlds = new String[] {player.getWorld().getName()};
+
+        StringBuilder ad = new StringBuilder(args[2]);
+
+        for (int i = 3; i < args.length; i++) {
+            ad.append(" ");
+            ad.append(args[i]);
+        }
+
         Shop newShop = new Shop(args[1], player.getLocation(), player.getName(), null, true, player.getWorld(), ad.toString(), worlds, true);
         ShopAds.shopHandler.addShop(newShop);
         ShopAdsMessage.command.shopCreated(player, newShop);
