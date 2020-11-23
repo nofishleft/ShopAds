@@ -261,19 +261,15 @@ public class ShopAdsCommand
         ShopAdsMessage.console.debug("config command");
 
         switch (args.length) {
-            case 1:
-                ShopAdsMessage.commandUsage.incorrectUsage(player);
-                ShopAdsMessage.commandUsage.configSettings(player);
-                break;
             case 2:
-                if (args[1].equalsIgnoreCase("save")) {
-                    ShopAds.iO.saveConfig();
-                    ShopAdsMessage.command.configSaved(player);
-                }
                 noValue(player, args);
                 break;
             case 3:
                 changeConfig(player, args);
+                break;
+            default:
+                ShopAdsMessage.commandUsage.incorrectUsage(player);
+                ShopAdsMessage.commandUsage.configSettings(player);
                 break;
         }
     }
@@ -384,6 +380,10 @@ public class ShopAdsCommand
         ShopAdsMessage.console.debug("noValue");
 
         switch (args[1].toLowerCase()) {
+            case "save":
+                ShopAds.iO.saveConfig();
+                ShopAdsMessage.command.configSaved(player);
+                break;
             case "announceinterval":
                 ShopAdsMessage.commandUsage.announceIntervalUsage(player);
                 break;
